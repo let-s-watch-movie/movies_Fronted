@@ -1,0 +1,67 @@
+.goback {
+  margin-top: 70px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+.main {
+  min-width: 1300px;
+}
+
+/* 电影信息 */
+.mintro .card {
+  max-width: 1200px;
+  max-height: 500px;
+  height: 100%;
+  /* background-color: blue; */
+}
+
+.img-wraper img {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.mintro .title {
+  max-width: 1200px;
+  max-height: 500px;
+}
+
+.mintro .title .text {
+  font-size: 25px;
+  padding-left: 50px;
+  font-weight: bold;
+}
+
+.mintro .img-wraper {
+  padding: 20px 10px;
+}
+.mintro .alterable {
+  display: inline-block;
+}
+
+#outoflist .btn {
+  display: none;
+}
+
+/* 用户列表 */
+.user_list img {
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0 0 3px 1px rgba(13, 77, 214, 0.788);
+}
+.user_list {
+  margin-top: 60px;
+}
+
+.user_list {
+  margin-top: 60px;
+}
+.user_list .row {
+  margin-top: 70px;
+}
+
+.mtip div {
+  margin: 50px auto;
+  width:500px;
+}

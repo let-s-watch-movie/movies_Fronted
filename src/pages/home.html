@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="referrer" content="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../static/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../static/mdb/css/mdb.min.css" />
+    <link rel="stylesheet" href="../pages/css/home.css" />
+    <script src="../../static/js/jquery-1.11.2.min.js"></script>
+    <script src="../pages/js/home.js"></script>
+    <title>movies_home</title>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Left links -->
+        <div>
+          <!-- Navbar brand -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-wrap">
+            <a class="nav-link d-flex align-items-center" href="./chat.html">
+              <i class="far fa-message me-2"></i>
+              <span>消息</span>
+            </a>
+          </ul>
+        </div>
+        <!-- Left links -->
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+          <a class="nav-link me-3" href="#">
+            <span id="bartext">一起看电影 &ensp;首页</span>
+          </a>
+          <div class="dropdown">
+            <a
+              class="dropdown-toggle d-flex align-items-center hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuAvatar"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                class="rounded-circle avatar"
+                height="25"
+                alt="avators"
+                loading="lazy"
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuAvatar"
+            >
+              <li>
+                <a class="dropdown-item" href="./me.html">个人主页</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="login.html">退出登录</a>
+              </li>
+            </ul>
+          </div>
+          <!-- </li> -->
+        </div>
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <!-- 主体部分 -->
+    <div class="main">
+      <!-- 轮播图部分 -->
+      <div class="lunbo d-flex align-items-center justify-content-center">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide" id="slide1">
+              <img
+                src="https://img1.doubanio.com/view/photo/l/public/p2888303427.webp"
+              />
+            </div>
+            <div class="swiper-slide" id="slide2">
+              <a href="#"
+                ><img
+                  src="https://img2.doubanio.com/view/photo/l/public/p480747492.webp"
+              /></a>
+            </div>
+            <div class="swiper-slide" id="slide3">
+              <a href="#"
+                ><img
+                  src="https://img1.doubanio.com/view/photo/l/public/p2557573348.webp"
+              /></a>
+            </div>
+            <div class="swiper-slide" id="slide4">
+              <a href="#"
+                ><img
+                  src="https://img9.doubanio.com/view/photo/l/public/p2886792276.webp"
+              /></a>
+            </div>
+            <div class="swiper-slide" id="slide5">
+              <a href="#"
+                ><img
+                  src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+              /></a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div id = 'slogan' class="justify-content-center row">发现电影乐趣，共赴视觉盛宴 - 邀你一起看电影！</div>
+      <!-- 电影卡片部分-->
+      <div class="movie_cards container-fluid">
+        <!-- <div class="tip">正在热映</div> -->
+        <!-- <div class="row">
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask d-flex align-items-center justify-content-center"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                >
+                  <p>这里不知道写点什么</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask d-flex align-items-center justify-content-center"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                >
+                  <p>这里不知道写点什么</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="bg-image hover-overlay ripple card">
+              <img
+                src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(0, 0, 0, 0.619)"
+                ></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- main结束了 -->
+    </div>
+
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="../../static/mdb/js/mdb.min.js"
+    ></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+
+    <!-- script -->
+    <script src="../../static/swiper/swiper-bundle.min.js"></script>
+  </body>
+</html>

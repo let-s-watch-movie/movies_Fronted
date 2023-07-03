@@ -1,0 +1,75 @@
+body{
+  background-color: aliceblue;
+}
+.main {
+  background-color:transparent;
+}
+
+#bartext{
+  color: rgb(10, 82, 227);
+  font-weight: bold;
+}
+/* 轮播图部分 */
+.lunbo{
+  background-image: linear-gradient(to bottom,aliceblue 0%,rgb(10, 82, 227) 40%,aliceblue 100%);
+  padding-top: 25px;
+  margin-top: 80px;
+  width:100%;
+}
+.swiper {
+  width: 1100px;
+  height: 490px;
+  padding-bottom: 20px;
+  background-color: transparent;
+  margin: 60px auto;
+  vertical-align: middle;
+}
+
+.swiper-slide {
+  width: 370px;
+  height: 450px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px black;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  /* 下面这个图片适应真好用能自动裁剪图片中间的部分适应容器大小 */
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* 电影卡片部分 */
+.movie_cards{
+  background-color: transparent;
+  min-width: 1100px;
+  padding:30px;
+}
+.movie_cards .row{
+  padding:10px;
+}
+.movie_cards .tip{
+  padding-left:10px;
+  font-size: larger;
+  color: rgba(0, 0, 0, 0.932);
+}
+.movie_cards .card{
+  width:200px;
+  height: 300px;
+}
+.movie_cards img{
+  width: 100%;
+  height: 100%;
+  /* 下面这个图片适应真好用能自动裁剪图片中间的部分适应容器大小 */
+  object-fit: cover;
+}
+/* 电影卡片里面的内容 */
+.movie_cards .card p{
+  color: white;
+}
+
+#slogan{
+  font-size: 42px;
+}
+
+
