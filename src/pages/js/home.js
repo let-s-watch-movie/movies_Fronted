@@ -1,86 +1,98 @@
 $(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
   //页面全局变量
-  let movies = [
-    {
-      id: 1,
-      imageUrl:
-        "https://img9.doubanio.com/view/photo/l/public/p1784591124.webp",
-      name: "AAA",
-    },
-    {
-      id: 2,
-      imageUrl:
-        "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
-      name: "bbb",
-    },
-    {
-      id: 3,
-      imageUrl: "https://img2.doubanio.com/view/photo/l/public/p480747492.webp",
-      name: "ccc",
-    },
-    {
-      id: 4,
-      imageUrl:
-        "https://img1.doubanio.com/view/photo/l/public/p2557573348.webp",
-      name: "ddd",
-    },
-    {
-      id: 5,
-      imageUrl:
-        "https://img9.doubanio.com/view/photo/l/public/p2886792276.webp",
-      name: "eee",
-    },
-    {
-      id: 6,
-      imageUrl:
-        "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
-      name: "fff",
-    },
-    {
-      id: 7,
-      imageUrl:
-        "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
-      name: "ggg",
-    },
-    {
-      id: 8,
-      imageUrl:
-        "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
-      name: "hhh",
-    },
-  ];
-  //主函数
-  //initialize();
-  initialize_users();
-  AddToLunBo();
+  let movies = [];
+
+  // let movies = [
+  //   {
+  //     id: 1,
+  //     imageUrl:
+  //       "https://img9.doubanio.com/view/photo/l/public/p1784591124.webp",
+  //     name: "AAA",
+  //   },
+  //   {
+  //     id: 2,
+  //     imageUrl:
+  //       "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
+  //     name: "bbb",
+  //   },
+  //   {
+  //     id: 3,
+  //     imageUrl: "https://img2.doubanio.com/view/photo/l/public/p480747492.webp",
+  //     name: "ccc",
+  //   },
+  //   {
+  //     id: 4,
+  //     imageUrl:
+  //       "https://img1.doubanio.com/view/photo/l/public/p2557573348.webp",
+  //     name: "ddd",
+  //   },
+  //   {
+  //     id: 5,
+  //     imageUrl:
+  //       "https://img9.doubanio.com/view/photo/l/public/p2886792276.webp",
+  //     name: "eee",
+  //   },
+  //   {
+  //     id: 6,
+  //     imageUrl:
+  //       "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
+  //     name: "fff",
+  //   },
+  //   {
+  //     id: 7,
+  //     imageUrl:
+  //       "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
+  //     name: "ggg",
+  //   },
+  //   {
+  //     id: 8,
+  //     imageUrl:
+  //       "https://img1.doubanio.com/view/photo/l/public/p2888303427.webp",
+  //     name: "hhh",
+  //   },
+  // ];
+
+  // AddToLunBo();
+  // AddToMovieCards();
+  initialize_movies();
   AddToMovieCards();
+  AddToLunBo();
+  get_per_info();
+  initialize_users();
 
   //其它函数
-  //1. 页面初始化函数
+  //页面初始化函数
   //1.1 电影初始化
   function initialize_movies() {
     $.ajax({
-      url: "/api/movies", // 后端提供的电影列表接口
-      type: "POST",
-      success: function (response) {
+      //url: "http://127.0.0.1:8080/test02", // 后端提供的电影列表接口
+      url:"http://192.168.22.201:8080/movie/list",
+      type: "GET",
+      async:false,
+      success: function (res) {
         // 请求成功的回调函数，处理返回的电影列表数据
-        var re_movies = response.data;
-        var temp_movies = [];
+        console.log(res);
+        let re_movies = res.data;
+        let temp_movies = [];
+        let m;
 
         // 存储电影 信息
         re_movies.forEach(function (movie) {
-          var m = {
-            id: movie.movie_id,
-            imageUrl: movie.pster,
+          m = {
+            id: movie.movieId,
+            imageUrl: movie.poster,
             name: movie.movie_name,
           };
+
           temp_movies.push(m);
         });
         movies = temp_movies;
-        //添加到电影卡片中
-        AddToMovieCards();
-        //添加到轮播图中
-        AddToLunBo();
       },
       error: function (error) {
         // 请求失败的回调函数，处理错误情况
@@ -88,18 +100,43 @@ $(document).ready(function () {
       },
     });
   }
+
   //1.2 用户头像初始化
-  function initialize_users(){
-    let avatar = sessionStorage.getItem('avatar');
+  function initialize_users() {
+    let avatar = sessionStorage.getItem("avatar");
     console.log(avatar);
-    if(avatar)
-    {
+    if (avatar) {
       console.log("进入了头像的更新");
-      $(".avatar").attr("src",avatar);
-    }
-    else{
+      $(".avatar").attr("src", avatar);
+    } else {
       console.log("avatar为空，使用默认头像");
     }
+  }
+
+  //1.3 用户信息获取
+  function get_per_info(){
+    let data = {
+      account:sessionStorage.getItem("account")
+    }
+    console.log("用户详细信息初始化: "+data);
+    $.ajax({
+      //url:"获取用户详细信息",
+      url:"http://192.168.22.201:8080/user/getUserInfo",
+      type:"POST",
+      data: JSON.stringify(data),
+      async:false,
+      success:function(res){
+        console.log("后端返回信息: ");
+        console.log(res);
+        //赋值操作
+        if(res.avatar){
+          sessionStorage.setItem("avatar",res.avatar);
+        }
+      },
+      error:function(err){
+        console.log("获取用户详细信息的请求出错"+err);
+      }
+    })
   }
 
   //2. 添加电影卡片
@@ -132,7 +169,7 @@ $(document).ready(function () {
         row = $("<div>").addClass("row");
       }
     });
-    //余数电影也要记得加进去，亲
+    //余数电影也要记得加进去
     if (count % 6 !== 0) {
       $(".movie_cards").append(row);
     }
@@ -140,6 +177,7 @@ $(document).ready(function () {
 
   //3. 添加轮播图中的电影
   function AddToLunBo() {
+    $(".swiper-wrapper").empty();
     for (var i = 0; i < 5; i++) {
       let img = $("<img>").attr("src", movies[i].imageUrl);
       let div = $("<div>")
@@ -156,10 +194,11 @@ $(document).ready(function () {
     movie_id = $(this).attr("mid");
     //存电影id
     sessionStorage.setItem("movie_id", movie_id);
-    console.log(movie_id);
+    console.log("movie_id:"+movie_id);
+    // console.log("movie_id:"+sessionStorage.getItem("movie_id"));
     //跳转页面
     window.location.href = "movie.html";
-  });
+  }); 
 
   //轮播图
   var mySwiper = new Swiper(".swiper", {
@@ -167,10 +206,10 @@ $(document).ready(function () {
       delay: 2000,
       stopOnLastSlide: false,
       disableOnInteraction: true,
-      },
+    },
     loop: true, // 循环模式选项
     effect: "coverflow",
-    grabCursor:true,
+    grabCursor: true,
     slidesPerView: 3,
     centeredSlides: true,
     spaceBetween: "10%",

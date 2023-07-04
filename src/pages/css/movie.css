@@ -6,6 +6,12 @@
 .main {
   min-width: 1300px;
 }
+.navbar .avatar{
+  object-fit: cover;
+  width:45px;
+  height: 45px;
+  border-radius: 100%;
+}
 
 /* 电影信息 */
 .mintro .card {
@@ -39,6 +45,10 @@
 
 #outoflist .btn {
   display: none;
+}
+
+.m_info{
+  margin-top: 10px;
 }
 
 /* 用户列表 */
