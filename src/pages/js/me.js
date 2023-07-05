@@ -65,15 +65,11 @@ $(document).ready(function(){
     description:"  快乐星球"
   };
   //主函数
+  get_per_info();
   initialize_users();
   show_user_info(user_info);
   initialize_movies();
   AddToMovieCards();
-  // $(".sex .alterable").text("男");
-  // $(".age .alterable").text("20");
-  // $(".register_time .alterable").text("20230414");
-  // $(".description p").text("今天是13月81");
-  //其它函数
 
   //1.用户头像和昵称初始化
   function initialize_users(){
@@ -94,12 +90,13 @@ $(document).ready(function(){
   function initialize_movies() {
 
     let data = {
-      account:account
+      "account":account
     };
-    console.log("用户账号:"+data);
+    console.log("用户账号:");
+    console.log(data);
     $.ajax({
-      url: "http://127.0.0.1:8080/test02", // 后端提供的电影列表接口
-      type: "POST",
+      url: "http://192.168.159.207:8080/movie/self?" +"account="+account, // 后端提供的电影列表接口
+      type: "GET",
       data: JSON.stringify(data),
       async:false,
       success: function (response) {
@@ -184,20 +181,16 @@ $(document).ready(function(){
       type:"POST",
       data: JSON.stringify(data),
       success:function(res){
-        console.log("返回信息: " + res);
+        console.log("用户详细信息返回信息: ");
+        console.log(res);
         //赋值操作
         user_info = {
-          sex:res.data.sex,
-          age:res.data.age,
-          register_time:res.data.register_time,
-          description:res.data.description
+          sex:res.sex ? res.sex:"还未填写",
+          age:res.age,
+          register_time:res.register_time,
+          description:res.description ? res.description:"还未填写"
         };
         show_user_info(user_info);
-
-        // $(".sex .alterable").text(res.data.sex);
-        // $(".age .alterable").text(res.data.age);
-        // $(".register_time .alterable").text(res.data.register_time);
-        // $(".description p").text(res.data.description);
       },
       error:function(err){
         console.log("获取用户详细信息的请求出错"+err);
@@ -238,23 +231,31 @@ $(document).ready(function(){
 
     e.preventDefault(); // 阻止表单默认提交行为
 
-    var form = $(this);
+    //var form = $(this);
     var formData = new FormData(this);
 
     //头像
     var avatarFile = $('#input_avatar')[0].files[0];
     formData.append('avatar', avatarFile);
 
-    //let new_account = $("#input_name").val();
     let new_sex = $("#edit_info #gender-select").val();
     let new_age = $("#input_age").val();
     let new_description = $("#input_intro").val();
     
-    //formData.append('account', new_account);
+    formData.append('account', account);
     formData.set('sex', new_sex);
     formData.set('age', new_age);
     formData.set('description', new_description);
 
+    // let data={
+    //   'account':account,
+    //   'avatar':avatarFile,
+    //   'sex':new_sex,
+    //   'age':new_age,
+    //   'description':new_description
+    // }
+    // console.log("前端修改后的个人信息：");
+    // console.log(data);
     // //测试数据
     // console.log("待上传修改后的个人信息: ");
     // formData.forEach(function(value, key) {
@@ -262,17 +263,18 @@ $(document).ready(function(){
 
 
     $.ajax({
-      url:"http://127.0.0.1:8080/test",
+      url:"http://192.168.159.207:8080/user/updateUserInfo",
       type: "POST",
-      data: formData,
-      processData: false, // 不对表单数据进行处理
-      contentType: false, // 不设置内容类型
+      data: $('form').serialize(),
+      // headers:{
+      //   "content-type": "multipart/form-data"
+      // },
+      processData: false,
+      contentType: false,
       success:function(res){
         console.log("后端返回: " + res);
         if(res.status_code == "200"){
           sessionStorage.setItem("avatar", new_avatar);
-          //sessionStorage.setItem("account", new_account);
-          //account = new_account;
           //面板个人信息的更新
           initialize_users();//更新头像和昵称
           user_info.sex=new_sex;
@@ -280,13 +282,13 @@ $(document).ready(function(){
           user_info.description = new_description;
           show_user_info(user_info);
           alert("修改成功!");
-          // $("#edit_info").hide();
         }else{
           alert("账号重复,请重新取个名字吧!");
         }
       },
       error:function(err){
-        console.log("上传信息失败: " + err);
+        console.log("上传信息失败: ");
+        console.log(err)
       }
     })
 

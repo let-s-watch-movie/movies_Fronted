@@ -6,9 +6,9 @@
 .main {
   min-width: 1200px;
 }
-.navbar .avatar{
+.navbar .avatar {
   object-fit: cover;
-  width:45px;
+  width: 45px;
   height: 45px;
   border-radius: 100%;
 }
@@ -47,15 +47,14 @@
   display: inline-block;
 }
 
-#outoflist{
-  display:none;
-  cursor: pointer;
+#outoflist {
+  display: none;
 }
-#addtolist{
+#movie_title .btn {
   cursor: pointer;
 }
 
-.m_info{
+.m_info {
   margin-top: 10px;
 }
 
@@ -81,6 +80,6 @@
 
 .mtip div {
   margin: 50px auto;
-  width:500px;
+  width: 500px;
   text-align: center;
 }

@@ -205,10 +205,10 @@ $(document).ready(function () {
     $.ajax({
       url: "http://192.168.159.207:8080/movie/in?"+ "movie_id=" +movie_id+"&account="+account,
       type: "GET",
-      async:false,
+      // async:false,
       success: function (res) {
         console.log(res);
-        if (res.data = true) {
+        if (res.data == true) {
           $("#addtolist").hide();
           $("#outoflist").show();
         }
