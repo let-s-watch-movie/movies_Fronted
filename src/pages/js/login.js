@@ -45,7 +45,7 @@ $(document).ready(function () {
        // 2.请求
         $.ajax({
           //url:"http://127.0.0.1:8080/test",
-          url:"http://192.168.22.201:8080/user/login",
+          url:"http://192.168.159.207:8080/user/login",
           type:"POST",
           data: JSON.stringify(data),
           success:function(res){
@@ -98,12 +98,12 @@ $(document).ready(function () {
 
     $.ajax({
       //url:"http://127.0.0.1:8080/test",
-      url:"http://192.168.22.201:8080/user/register",
+      url:"http://192.168.159.207:8080/user/register",
       type:"POST",
       data: JSON.stringify(data),
       success:function(res){
         console.log(res);
-        if(res.data == true){
+        if(res.code == 200){
           alert("注册成功，请使用新账号登录");
           $(".signup").hide();
           $(".login").show();

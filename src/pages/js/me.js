@@ -180,7 +180,7 @@ $(document).ready(function(){
     }
     console.log("用户详细信息初始化: "+data);
     $.ajax({
-      url:"获取用户详细信息",
+      url:"http://192.168.159.207:8080/user/getUserInfo",
       type:"POST",
       data: JSON.stringify(data),
       success:function(res){

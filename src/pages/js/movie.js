@@ -81,6 +81,7 @@ $(document).ready(function () {
   user_list = [];
 
   initialize_users();
+  if_InMovie();
   getMovie_userList();
   addUsers();
   getMovieInfo();
@@ -90,7 +91,7 @@ $(document).ready(function () {
   //1. 请求：获取电影简介
   function getMovieInfo() {
     $.ajax({
-      url: "http://192.168.22.201:8080/movie/info?"+"movie_id=" + movie_id,
+      url: "http://192.168.159.207:8080/movie/info?"+"movie_id=" + movie_id,
       type: "GET",
       success: function (res) {
         console.log("正在获取电影信息:");
@@ -131,30 +132,24 @@ $(document).ready(function () {
   //2. 请求：获取该电影的想看列表(与用户相距5公里内)
   function getMovie_userList() {
     let data = {
-      "account": "user8/r",
+      "account": account,
       "movie_id": movie_id
     };
-    var form = new FormData();
-    form.set('account','user8');
-    form.set('movie_id','1494533');
-    
-    console.log("表单数据:");
-    console.log(typeof(form.get('movie_id')));
-    console.log(typeof(form.get('account')));
 
     $.ajax({
       //url: "http://127.0.0.1:8080/test03",
-      url:"http://192.168.22.201:8080/user/within-five-kilometers",
-      type: "POST",
-      data: form,
       async:false,
-      processData: false, 
-      contentType: "multipart/form-data",
+      url:"http://192.168.159.207:8080/user/within-five-kilometers",
+      type: "POST",
+      data: data,
+      headers:{
+        "content-type": "application/x-www-form-urlencoded",
+      },
       success: function (res) {
         console.log("后端返回的用户列表:");
         console.log(res);
         //处理返回信息的格式
-        let temp_list = res.data;
+        let temp_list = res;
         for (let i = 0; i < temp_list.length; i++) {
           let user = {
             account: temp_list[i].account,
@@ -176,6 +171,9 @@ $(document).ready(function () {
 
    //3. 承接上个函数将用户信息添加到页面中进行展示
    function addUsers() {
+    if(user_list.length == 0){
+      $(".mtip div").text("暂无想看该部电影的用户");
+    }
     let row = $("<div>").addClass(
       "row justify-content-center align-items-center"
     );
@@ -203,21 +201,16 @@ $(document).ready(function () {
 
   //4. 请求：判断登录用户是否属于当前电影的想看列表
   function if_InMovie() {
-    let data = {
-      movie_id: movie_id,
-      account: account,
-    };
     console.log("在判断用户是否在想看列表中:");
-    console.log(data);
     $.ajax({
-      url: "判断用户是否在想看列表中",
-      type: "POST",
-      data: JSON.stringify(data),
+      url: "http://192.168.159.207:8080/movie/in?"+ "movie_id=" +movie_id+"&account="+account,
+      type: "GET",
+      async:false,
       success: function (res) {
         console.log(res);
-        if (res.data == "In") {
-          $(".addtolist").hide();
-          $(".outoflist").show();
+        if (res.data = true) {
+          $("#addtolist").hide();
+          $("#outoflist").show();
         }
       },
       error: function (res) {
@@ -228,7 +221,7 @@ $(document).ready(function () {
   }
 
   //5.请求（addtolist的点击函数）：加入想看列表
-  $("#addtolist").click(function () {
+  $("#addtolist button").click(function () {
     let data = {
       movieId: movie_id,
       account: account,
@@ -237,14 +230,18 @@ $(document).ready(function () {
     console.log(data);
 
     $.ajax({
-      url: "/group",
+      url: "http://192.168.159.207:8080/group",
       type: "POST",
       data: JSON.stringify(data),
       success: function (res) {
         console.log(res);
-        alert("加入成功！");
-        $(".addtolist").hide();
-        $(".outoflist").show();
+        if(res.code == 200){
+          alert("加入成功！");
+          $("#addtolist").hide();
+          $("#outoflist").show();
+        }else{
+          alert("加入失败");
+        }
       },
       error: function (res) {
         console.log("加入列表出错啦");
@@ -255,7 +252,7 @@ $(document).ready(function () {
   });
 
   //6.请求（outoflist的点击函数）：退出想看列表
-  $("#notinlist").click(function () {
+  $("#outoflist button").click(function () {
     let data = {
       movie_id: movie_id,
       account: account,
@@ -264,14 +261,14 @@ $(document).ready(function () {
     console.log(data);
 
     $.ajax({
-      url: "/group?movieId="+ movie_id + "&account=" + account,
+      url: "http://192.168.159.207:8080/group?movieId="+ movie_id + "&account=" + account,
       type: "DELETE",
       data: JSON.stringify(data),
       success: function (res) {
         console.log(res);
         alert("退出成功！");
-        $(".outoflist").hide();
-        $(".addtolist").show();
+        $("#outoflist").hide();
+        $("#addtolist").show();
       },
       error: function (res) {
         console.log("退出列表出错啦");

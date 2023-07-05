@@ -4,7 +4,7 @@
   font-size: 20px;
 }
 .main {
-  min-width: 1300px;
+  min-width: 1200px;
 }
 .navbar .avatar{
   object-fit: cover;
@@ -23,6 +23,8 @@
 
 .img-wraper img {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+  width: 370px;
 }
 
 .mintro .title {
@@ -37,14 +39,20 @@
 }
 
 .mintro .img-wraper {
-  padding: 20px 10px;
+  padding: 10px 5px;
+  /* background-color: aqua; */
+  width: 390px;
 }
 .mintro .alterable {
   display: inline-block;
 }
 
-#outoflist .btn {
-  display: none;
+#outoflist{
+  display:none;
+  cursor: pointer;
+}
+#addtolist{
+  cursor: pointer;
 }
 
 .m_info{
@@ -74,4 +82,5 @@
 .mtip div {
   margin: 50px auto;
   width:500px;
+  text-align: center;
 }

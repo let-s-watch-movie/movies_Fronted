@@ -72,7 +72,7 @@ $(document).ready(function () {
   function initialize_movies() {
     $.ajax({
       //url: "http://127.0.0.1:8080/test02", // 后端提供的电影列表接口
-      url:"http://192.168.22.201:8080/movie/list",
+      url:"http://192.168.159.207:8080/movie/list",
       type: "GET",
       async:false,
       success: function (res) {
@@ -121,7 +121,7 @@ $(document).ready(function () {
     console.log("用户详细信息初始化: "+data);
     $.ajax({
       //url:"获取用户详细信息",
-      url:"http://192.168.22.201:8080/user/getUserInfo",
+      url:"http://192.168.159.207:8080/user/getUserInfo",
       type:"POST",
       data: JSON.stringify(data),
       async:false,
