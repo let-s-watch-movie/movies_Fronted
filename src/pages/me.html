@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="../../static/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../../static/mdb/css/mdb.min.css" />
     <link rel="stylesheet" href="../pages/css/me.css" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="../../static/js/jquery-1.11.2.min.js"></script>
     <script src="../pages/js/me.js"></script>
+    <!-- <script src="../../static/img/DefaultImg.png"></script> -->
     <title>个人主页</title>
   </head>
   <body>
@@ -81,51 +83,245 @@
     <div class="main">
       <div class="row clearfix wrapper">
         <div class="col-md-12 column">
-
           <!-- 用户个人信息 -->
           <div class="row clearfix uinfo_wrapper">
-            <div class="col-md-8 offset-md-2 uinfo">
-              <div class="row avatar">
-                <div class="col-md-4"><img src="https://img0.baidu.com/it/u=2544638661,1263898139&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=498"" alt="头像"></div>
+            <div class="col-md-10 offset-md-1 uinfo">
+              <!-- 头像+名称 -->
+              <div class="row align-items-center justify-content-center">
+                <div class="col-md-2">
+                  <img
+                  src="https://img0.baidu.com/it/u=2544638661,1263898139&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=498""
+                  alt="头像"
+                  class="avatar">
+                </div>
+                <div class="col-md-8 account">用户名</div>
+              </div>
+              <!-- 其它信息+简介 -->
+              <div class="row desc align-items-center justify-content-center">
+                <div class="card col-md-10">
+                  <div class="card-body">
+                    <div class="sex box">
+                      性别：
+                      <div class="alterable"></div>
+                    </div>
+                    <div class="age box">
+                      年龄：
+                      <div class="alterable"></div>
+                    </div>
+                    <div class="register_time box">
+                      注册时间：
+                      <div class="alterable"></div>
+                    </div>
+                    <div class="description box">
+                      个人简介：
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-md-2 column">
+          </div>
+
+          <!-- 3个按钮 -->
+          <div class="row clearfix button_wrapper">
+            <div class="col-md-4 offset-md-6 d-flex justify-content-between">
+              <!-- 修改个人资料的弹窗 -->
+              <button type="button" class="btn" data-mdb-toggle="modal" data-mdb-target="#edit_info" id="edit_info_btn">
+                修改个人资料
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="edit_info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <form id="Form"enctype="multipart/form-data">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">请填写您的个人资料</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- 头像上传-->
+                        <div>
+                            <div id="avatar-preview"><img></div> 
+                            <div id="avatar-upload"><input id = "input_avatar" type="file" accept="image/*"></div> 
+                        </div>
+                        <!-- 其它个人资料 -->
+                        <div class="form-outline name">
+                          <input type="text" id="input_name" class="form-control" readonly/>
+                          <label class="form-label" for="input_name">昵称</label>
+                        </div>
+                        <select id="gender-select" name="gender">
+                          <option value="">请选择性别</option>
+                          <option value="男">男</option>
+                          <option value="女">女</option>
+                          <option value="其他">其他</option>
+                        </select>
+                        <div class="form-outline age">
+                          <input type="number" id="input_age" class="form-control" min = "0" />
+                          <label class="form-label" for="input_age" >年龄</label>
+                        </div>
+                        <div class="form-outline">
+                          <textarea class="form-control" id="input_intro" rows="4"></textarea>
+                          <label class="form-label" for="input_intro">个人简介</label>
+                        </div>
+  
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary cancel" data-mdb-dismiss="modal">取消</button>
+                        <button class="btn btn-primary"  type="submit">提交</button>
+                      </div>
+                    </form>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 修改密码的弹窗 -->
+              <button type="button" class="btn" data-mdb-toggle="modal" data-mdb-target="#edit_ps" id="edit_ps_btn">
+                修改个人密码
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="edit_ps" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">密码修改</h5>
+                      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div>
+                        <label for="old">请输入原密码:</label>
+                        <input type="password" id="old">
+                      </div>
+                      <div>
+                        <label for="new1">请输入新密码:</label>
+                        <input type="password" id="new1">
+                      </div>
+                      <div>
+                        <label for="new2">请确认新密码:</label>
+                        <input type="password" id="new2">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary cancel" data-mdb-dismiss="modal">取消</button>
+                      <button type="button" class="btn btn-primary submit">提交</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                class="btn btn-primary"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#movie_list_wrapper"
+                aria-expanded="true"
+                aria-controls="movie_list_wrapper"
+              >
+                点击查看已加入的电影列表
+              </button>
             </div>
           </div>
 
           <!-- 用户加入的电影列表 -->
-          <div class="row clearfix movie_list_wrapper">
-            <div class="col-md-10 offset-md-1 column movie_list">
-            </div>
-            <div class="col-md-1 column">
+          <div
+            class="row clearfix movie_list_wrapper collapse align-items-center justify-content-center"
+            id = "movie_list_wrapper"
+          >
+            <div class="col-md-10 movie_cards">
+              <!-- <div class="row">
+                <div class="col-md-2">
+                  <div class="bg-image hover-overlay ripple card">
+                    <img
+                      src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                      class="img-fluid"
+                    />
+                    <a href="#!">
+                      <div
+                        class="mask d-flex align-items-center justify-content-center"
+                        style="background-color: rgba(0, 0, 0, 0.619)"
+                      >
+                        <p>这里不知道写点什么</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="bg-image hover-overlay ripple card">
+                    <img
+                      src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                      class="img-fluid"
+                    />
+                    <a href="#!">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(0, 0, 0, 0.619)"
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="bg-image hover-overlay ripple card">
+                    <img
+                      src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                      class="img-fluid"
+                    />
+                    <a href="#!">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(0, 0, 0, 0.619)"
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="bg-image hover-overlay ripple card">
+                    <img
+                      src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                      class="img-fluid"
+                    />
+                    <a href="#!">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(0, 0, 0, 0.619)"
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="bg-image hover-overlay ripple card">
+                    <img
+                      src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                      class="img-fluid"
+                    />
+                    <a href="#!">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(0, 0, 0, 0.619)"
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="bg-image hover-overlay ripple card">
+                    <img
+                      src="https://img9.doubanio.com/view/photo/l/public/p1784591124.webp"
+                      class="img-fluid"
+                    />
+                    <a href="#!">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(0, 0, 0, 0.619)"
+                      ></div>
+                    </a>
+                  </div>
+                </div>
+              </div> -->
             </div>
           </div>
-
-          <!-- 两个按钮的位置 -->
-          <div class="row clearfix button_wrapper">
-            <div class="col-md-6 offset-md-3 column">
-              <div class="row clearfix">
-                <div class="col-md-3 offset-md-2 column">
-                </div>
-                <div class="col-md-2 column">
-                </div>
-                <div class="col-md-3 column">
-                </div>
-                <div class="col-md-2 column">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 column">
-            </div>
-          </div>
-          
         </div>
       </div>
     </div>
-
-
-
-
 
     <!-- MDB -->
     <script
