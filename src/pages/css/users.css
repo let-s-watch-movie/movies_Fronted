@@ -46,6 +46,9 @@
   height: 100%;
   object-fit: cover;
 }
+.movie_cards p{
+  color: white;
+}
 
 /* 按钮部分 */
 .button_wrapper{
@@ -53,4 +56,7 @@
 }
 #chat_resquest{
   margin-right:15px;
+}
+#popchat_resquest input{
+  width: 470px;
 }

@@ -36,6 +36,7 @@ $(document).ready(function () {
           longitude: longitude,
           latitude: latitude,
         };
+        console.log("位置：");
         console.log(data);
         //测试用数据
         // sessionStorage.setItem("account", account);
@@ -64,6 +65,7 @@ $(document).ready(function () {
           error:function(err){
             console.log("登录部分出错，以下是错误信息");
             console.log(err);
+            alert("登录失败，请检查账号和密码是否正确");
           }
         })
       });

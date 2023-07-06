@@ -78,11 +78,11 @@ $(document).ready(function(){
   }
 
   //2. 请求:发送聊天请求
-  $("#chat_resquest").click(function(){
+  $("#popchat_resquest .submit").click(function(){
     let data = {
-      sendingAccount:"小熊",
-      receiverAccount:"用户A",
-      content:"用户E向用户A发聊天请求"
+      sendingAccount:account,
+      receiverAccount:account2,
+      content:$("#popchat_resquest input").val()
     }
     console.log("发送聊天请求：" + data);
     $.ajax({
@@ -93,6 +93,8 @@ $(document).ready(function(){
       {
         console.log("发送聊天返回的数据");
         console.log(res);
+        alert("请求发送成功");
+        $(".btn-close").click();
       
       },
       error:function(err){
@@ -115,6 +117,7 @@ $(document).ready(function(){
       async:false,
       success: function (response) {
         // 请求成功的回调函数，处理返回的电影列表数据
+        console.log(response)
         var re_movies = response.data;
         var temp_movies = [];
 
@@ -123,7 +126,7 @@ $(document).ready(function(){
           var m = {
             id: movie.movieId,
             imageUrl: movie.poster,
-            name: movie.movie_name,
+            name: movie.movieName,
           };
           temp_movies.push(m);
         });

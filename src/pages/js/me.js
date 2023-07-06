@@ -209,8 +209,8 @@ $(document).ready(function () {
   $(edit_info_btn).click(function () {
     $("#avatar-preview img").attr("src", sessionStorage.getItem("avatar"));
     $("#edit_info .name input").val(account);
-    $("#edit_info #gender-select").val(user_info.sex);
-    $("#edit_info .age input").val(user_info.age);
+    $("#edit_info #gender-select").val(user_info.sex?user_info.sex:"女");
+    $("#edit_info .age input").val(user_info.age?user_info.age:0);
     $("#edit_info textarea").val(user_info.description);
   });
 
@@ -226,62 +226,87 @@ $(document).ready(function () {
   });
 
   //6.2信息的修改提交
+  // $("#Form").submit(function (e) {
+  //   e.preventDefault(); // 阻止表单默认提交行为
+
+  //   //var form = $(this);
+  //   const formData = new FormData();
+
+  //   //头像
+  //   var avatarFile = $("#input_avatar")[0].files[0];
+  //   formData.append("avatar", avatarFile);
+
+  //   let new_sex = $("#edit_info #gender-select").val();
+  //   let new_age = $("#input_age").val();
+  //   let new_description = $("#input_intro").val();
+
+  //   formData.append("account", account);
+  //   formData.set("sex", new_sex);
+  //   formData.set("age", new_age);
+  //   formData.set("description", new_description);
+
+    
+
+  //   // form.forEach(function (value, key) {
+  //   //   console.log(key + ": " + value);
+  //   // });
+  //   $.ajax({
+  //     url: "http://192.168.159.207:8080/user/updateUserInfo",
+  //     method: "get",
+  //     processData: false,
+  //     contentType: "multipart/form-data",
+  //     data: formData,
+  //     crossDomain: true,
+  //     success: function (res) {
+  //       console.log("后端返回: ");
+  //       console.log(res);
+  //       if (res.status_code == "200") {
+  //         sessionStorage.setItem("avatar", new_avatar);
+  //         //面板个人信息的更新
+  //         initialize_users(); //更新头像和昵称
+  //         user_info.sex = new_sex;
+  //         user_info.age = new_age;
+  //         user_info.description = new_description;
+  //         show_user_info(user_info);
+  //         alert("修改成功!");
+  //       } else {
+  //         alert("修改失败!");
+  //       }
+  //     },
+  //     error: function (err) {
+  //       console.log("上传信息失败:");
+  //       console.log(err);
+  //     },
+  //   });
+  // });
+
   $("#Form").submit(function (e) {
     e.preventDefault(); // 阻止表单默认提交行为
-
-    //var form = $(this);
+  
     const formData = new FormData();
-
+  
     //头像
+    var defaultFile = new File(["../../../static/img/R.jpg"], "default_avatar.jpg", {type: "image/jpeg"});
     var avatarFile = $("#input_avatar")[0].files[0];
-    formData.append("avatar", avatarFile);
-
+    formData.append("avatar", avatarFile?avatarFile:defaultFile);
+  
     let new_sex = $("#edit_info #gender-select").val();
     let new_age = $("#input_age").val();
     let new_description = $("#input_intro").val();
-
+  
     formData.append("account", account);
     formData.set("sex", new_sex);
     formData.set("age", new_age);
     formData.set("description", new_description);
-
-    // let data={
-    //   'account':account,
-    //   'avatar':avatarFile,
-    //   'sex':new_sex,
-    //   'age':new_age,
-    //   'description':new_description
-    // }
-    // console.log("前端修改后的个人信息：");
-    // console.log(data);
-    // //测试数据
-    // console.log("待上传修改后的个人信息: ");
-    // formData.forEach(function(value, key) {
-    //   console.log(key + ': ' + value);})
-
-    // const form = new FormData();
-    // form.append("avatar", [
-    //   "C:\\Users\\86173\\Pictures\\联想锁屏壁纸\\8586655.jpg",
-    // ]);
-    // form.append("account", "user8");
-    // form.append("sex", "女");
-    // form.append("age", "19");
-    // form.append("description", "你好");
-
-    // form.forEach(function (value, key) {
-    //   console.log(key + ": " + value);
-    // });
-    $.ajax({
-      url: "http://192.168.159.207:8080/user/updateUserInfo",
-      method: "get",
-      processData: false,
-      contentType: "multipart/form-data",
-      data: formData,
-      crossDomain: true,
-      success: function (res) {
-        console.log("后端返回: ");
-        console.log(res);
-        if (res.status_code == "200") {
+  
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", "http://192.168.159.207:8080/user/updateUserInfo", true);
+    xhr.onload = function () {
+      console.log("后端返回:");
+        console.log(xhr.response);
+        let res=JSON.parse(xhr.response);
+        console.log(res.data);
+      if (res.code==200) {
           sessionStorage.setItem("avatar", new_avatar);
           //面板个人信息的更新
           initialize_users(); //更新头像和昵称
@@ -290,16 +315,18 @@ $(document).ready(function () {
           user_info.description = new_description;
           show_user_info(user_info);
           alert("修改成功!");
-        } else {
-          alert("修改失败!");
-        }
-      },
-      error: function (err) {
-        console.log("上传信息失败:");
-        console.log(err);
-      },
-    });
+      } else {
+        console.log("修改失败:");
+        console.log(xhr.statusText);
+      }
+    };
+    xhr.onerror = function () {
+      console.log("请求失败:");
+      console.log(xhr.statusText);
+    };
+    xhr.send(formData);
   });
+  
 
 
   

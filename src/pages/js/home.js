@@ -108,6 +108,7 @@ $(document).ready(function () {
     console.log(avatar);
     if (avatar) {
       console.log("进入了头像的更新");
+      console.log(avatar);
       $(".avatar").attr("src", avatar);
     } else {
       console.log("avatar为空，使用默认头像");
