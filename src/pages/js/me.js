@@ -64,10 +64,10 @@ $(document).ready(function () {
     register_time: "20230703",
     description: "  快乐星球",
   };
-  //主函数
+  
   get_per_info();
   initialize_users();
-  show_user_info(user_info);
+  //show_user_info(user_info);
   initialize_movies();
   AddToMovieCards();
 
@@ -105,7 +105,7 @@ $(document).ready(function () {
         // 存储电影 信息
         re_movies.forEach(function (movie) {
           var m = {
-            id: movie.movie_id,
+            id: movie.movieId,
             imageUrl: movie.poster,
             name: movie.movie_name,
           };
@@ -163,7 +163,8 @@ $(document).ready(function () {
     movie_id = $(this).attr("mid");
     //存电影id
     sessionStorage.setItem("movie_id", movie_id);
-    console.log("被点击的电影的id:" + movie_id);
+    console.log("被点击的电影的id:");
+    console.log(movie_id);
     //跳转页面
     window.location.href = "movie.html";
   });
@@ -212,6 +213,7 @@ $(document).ready(function () {
     $("#edit_info .age input").val(user_info.age);
     $("#edit_info textarea").val(user_info.description);
   });
+
   //6.1 头像上传
   $("#avatar-upload input").change(function () {
     var file = $(this)[0].files[0];
@@ -223,7 +225,7 @@ $(document).ready(function () {
     reader.readAsDataURL(file);
   });
 
-  //6.2信息的提交
+  //6.2信息的修改提交
   $("#Form").submit(function (e) {
     e.preventDefault(); // 阻止表单默认提交行为
 
@@ -257,27 +259,24 @@ $(document).ready(function () {
     // formData.forEach(function(value, key) {
     //   console.log(key + ': ' + value);})
 
-    const form = new FormData();
-    form.append("avatar", [
-      "C:\\Users\\86173\\Pictures\\联想锁屏壁纸\\8586655.jpg",
-    ]);
-    form.append("account", "user8");
-    form.append("sex", "女");
-    form.append("age", "19");
-    form.append("description", "你好");
+    // const form = new FormData();
+    // form.append("avatar", [
+    //   "C:\\Users\\86173\\Pictures\\联想锁屏壁纸\\8586655.jpg",
+    // ]);
+    // form.append("account", "user8");
+    // form.append("sex", "女");
+    // form.append("age", "19");
+    // form.append("description", "你好");
 
-    form.forEach(function (value, key) {
-      console.log(key + ": " + value);
-    });
-
+    // form.forEach(function (value, key) {
+    //   console.log(key + ": " + value);
+    // });
     $.ajax({
       url: "http://192.168.159.207:8080/user/updateUserInfo",
-      method: "POST",
-      headers: {},
+      method: "get",
       processData: false,
       contentType: "multipart/form-data",
-      //mimeType: "multipart/form-data",
-      data: form,
+      data: formData,
       crossDomain: true,
       success: function (res) {
         console.log("后端返回: ");
@@ -296,12 +295,14 @@ $(document).ready(function () {
         }
       },
       error: function (err) {
-        console.log("上传信息失败: ");
+        console.log("上传信息失败:");
         console.log(err);
       },
     });
   });
 
+
+  
   //6.3 用户密码的修改
   $("#edit_ps .submit").click(function () {
     //1. 获取输入框的值
@@ -321,11 +322,11 @@ $(document).ready(function () {
     };
     console.log(adddata);
     $.ajax({
-      url: "http://192.168.159.207:8080/user/updateUserPassword",
-      type: "post",
-      data:adddata,
+      url: "http://192.168.159.207:8080/user/updateUserPassword?account="+account+"&old_password="+password+"&new_password="+password1,
+      type: "get",
       success: function (res) {
-        console.log("修改密码时返回的数据: " + res);
+        console.log("修改密码时返回的数据: ");
+        console.log(res);
         alert("密码修改成功");
       },
       error: function (err) {
@@ -334,6 +335,7 @@ $(document).ready(function () {
         alert(err);
       },
     });
+    
   });
 
   //7. 返回上一个页面

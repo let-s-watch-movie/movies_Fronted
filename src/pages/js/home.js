@@ -7,7 +7,7 @@ $(document).ready(function () {
   });
   //页面全局变量
   let movies = [];
-
+  sessionStorage.setItem("avatar","../../../static/img/R.jpg");
   // let movies = [
   //   {
   //     id: 1,
@@ -77,6 +77,7 @@ $(document).ready(function () {
       async:false,
       success: function (res) {
         // 请求成功的回调函数，处理返回的电影列表数据
+        console.log("电影信息：");
         console.log(res);
         let re_movies = res.data;
         let temp_movies = [];
@@ -87,7 +88,7 @@ $(document).ready(function () {
           m = {
             id: movie.movieId,
             imageUrl: movie.poster,
-            name: movie.movie_name,
+            name: movie.movieName,
           };
 
           temp_movies.push(m);
@@ -118,7 +119,8 @@ $(document).ready(function () {
     let data = {
       account:sessionStorage.getItem("account")
     }
-    console.log("用户详细信息初始化: "+data);
+    console.log("用户详细信息初始化: ");
+    console.log(data);
     $.ajax({
       //url:"获取用户详细信息",
       url:"http://192.168.159.207:8080/user/getUserInfo",
@@ -130,7 +132,9 @@ $(document).ready(function () {
         console.log(res);
         //赋值操作
         if(res.avatar){
-          sessionStorage.setItem("avatar",res.avatar);
+          let s = res.avatar.replace("localhost","192.168.159.207");
+          console.log(s);
+          sessionStorage.setItem("avatar",s);
         }
       },
       error:function(err){

@@ -65,10 +65,11 @@ $(document).ready(function(){
     description:"  快乐星球"
   };
   //主函数
+  get_per_info();
   initialize_users();
   initialize_movies();
   AddToMovieCards();
-  show_user_info(user_info);
+  //show_user_info(user_info);
 
   //1.用户昵称初始化
   function initialize_users(){
@@ -79,22 +80,20 @@ $(document).ready(function(){
   //2. 请求:发送聊天请求
   $("#chat_resquest").click(function(){
     let data = {
-      inviter_account:account,
-      reciever_account:account2
+      sendingAccount:"小熊",
+      receiverAccount:"用户A",
+      content:"用户E向用户A发聊天请求"
     }
     console.log("发送聊天请求：" + data);
     $.ajax({
-      url: "发送聊天请求",
+      url: "http://192.168.159.207:8080/chat/request",
       type:"POST",
       data: JSON.stringify(data),
       success:function(res)
       {
-        if(res=="success"){
-          alert("请求发送成功");
-        }else{
-          alert("请求发送失败");
-          console.log("后端返回" + res);
-        }
+        console.log("发送聊天返回的数据");
+        console.log(res);
+      
       },
       error:function(err){
         console.log("聊天请求发送失败: " + err);
@@ -110,7 +109,7 @@ $(document).ready(function(){
     };
     console.log("页面用户账号:"+data);
     $.ajax({
-      url: "http://127.0.0.1:8080/test02", // 后端提供的电影列表接口
+      url: "http://192.168.159.207:8080/movie/self", // 后端提供的电影列表接口
       type: "POST",
       data: JSON.stringify(data),
       async:false,
@@ -122,7 +121,7 @@ $(document).ready(function(){
         // 存储电影 信息
         re_movies.forEach(function (movie) {
           var m = {
-            id: movie.movie_id,
+            id: movie.movieId,
             imageUrl: movie.poster,
             name: movie.movie_name,
           };
@@ -180,27 +179,25 @@ $(document).ready(function(){
     let data = {
       account:account2
     }
-    console.log("用户详细信息初始化: "+data);
+    //console.log("用户详细信息初始化: "+data);
     $.ajax({
-      url:"获取用户详细信息",
+      url:"http://192.168.159.207:8080/user/getUserInfo",
       type:"POST",
       data: JSON.stringify(data),
       success:function(res){
-        console.log("返回信息: " + res);
-        //赋值操作
-        if(res.data.avatar)
-        {
-          console.log("进入了头像的更新");
-          $(".avatar").attr("src",res.data.avatar);
+        console.log("返回信息: ");
+        if(res.avatar){
+          avatar_src=res.avatar.replace("localhost","192.168.159.207");
         }
         else{
-          console.log("avatar为空，使用默认头像");
+          avatar_src="../../../static/img/R.jpg";
         }
         user_info = {
-          sex:res.data.sex,
-          age:res.data.age,
-          register_time:res.data.register_time,
-          description:res.data.description
+          sex: res.sex ? res.sex : "还未填写",
+          age: res.age,
+          register_time: res.register_time,
+          description: res.description ? res.description : "还未填写",
+          avatar:avatar_src
         };
         show_user_info(user_info);
 
@@ -220,6 +217,7 @@ $(document).ready(function(){
     $(".age .alterable").text(info.age);
     $(".register_time .alterable").text(info.register_time);
     $(".description p").text(info.description);
+    $(".uinfo img").attr("src",info.avatar);
   }
 
 

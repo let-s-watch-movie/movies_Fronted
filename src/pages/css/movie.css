@@ -19,12 +19,14 @@
   max-height: 500px;
   height: 100%;
   /* background-color: blue; */
+  z-index: 0;
+}
+.title{
+  z-index: 1;
 }
 
 .img-wraper img {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
-  object-fit: cover;
-  width: 370px;
 }
 
 .mintro .title {
@@ -40,8 +42,6 @@
 
 .mintro .img-wraper {
   padding: 10px 5px;
-  /* background-color: aqua; */
-  width: 390px;
 }
 .mintro .alterable {
   display: inline-block;

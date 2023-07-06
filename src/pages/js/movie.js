@@ -97,16 +97,17 @@ $(document).ready(function () {
         console.log("正在获取电影信息:");
         console.log(res);
         //赋值操作
-        $("#director .alterable").text(res.data.director);
-        $("#star .alterable").text(res.data.star);
-        $("#category .alterable").text(res.data.category);
-        $("#srcLocation .alterable").text(res.data.srcLocation);
-        $("#language .alterable").text(res.data.language);
-        $("#releasedTime .alterable").text(res.data.releasedTime);
-        $("#summary .alterable").text(res.data.summary);
-        $("#duration .alterable").text(res.data.duration);
+        $("#movie_num .alterable").text(res.data.movieId?res.data.movieId:"暂时缺失");
+        $("#director .alterable").text(res.data.director?res.data.director:"暂时缺失");
+        $("#star .alterable").text(res.data.star?res.data.star:"暂时缺失");
+        $("#category .alterable").text(res.data.category?res.data.category:"暂时缺失");
+        $("#srcLocation .alterable").text(res.data.srcLocation?res.data.srcLocation:"暂时缺失");
+        $("#language .alterable").text(res.data.language?res.data.language:"暂时缺失");
+        $("#releasedTime .alterable").text(res.data.releasedTime?res.data.releasedTime:"暂时缺失");
+        $("#summary .alterable").text(res.data.summary?res.data.summary:"暂时缺失");
+        $("#duration .alterable").text(res.data.duration?res.data.duration:"暂时缺失");
         $(".mintro img").attr("src",res.data.poster);
-        $("#movie_title").text(res.data.movieName);
+        $("#movie_title").text(res.data.movieName?res.data.movieName:"暂时缺失");
 
         let score = res.data.score;
         if(score == 0){
@@ -115,13 +116,13 @@ $(document).ready(function () {
           $("#score .alterable").text(score);
         }
 
-        if (res.data.summary.length <= 240) {
+        if (res.data.summary.length <= 180) {
           $("#summary p").text(res.data.summary);
         } else {
-          let string = res.data.summary[239] + "...";
+          let string = res.data.summary.slice(0,180)+ "...";
           $("#summary p").text(string);
         }
-        $("img-wraper img").attr("src", res.data.movieName);
+        //$("img-wraper img").attr("src", res.data.movieName);
       },
       error: function (err) {
         console.log("获取电影简介的请求出错" + err);
@@ -135,6 +136,7 @@ $(document).ready(function () {
       "account": account,
       "movie_id": movie_id
     };
+    console.log(data);
 
     $.ajax({
       //url: "http://127.0.0.1:8080/test03",
@@ -153,7 +155,7 @@ $(document).ready(function () {
         for (let i = 0; i < temp_list.length; i++) {
           let user = {
             account: temp_list[i].account,
-            avatar: temp_list[i].avatar,
+            avatar: temp_list[i].avatar?temp_list[i].avatar.replace("localhost","192.168.159.207"):"../../../static/img/R.jpg",
           };
           user_list.push(user);
         }
@@ -172,7 +174,7 @@ $(document).ready(function () {
    //3. 承接上个函数将用户信息添加到页面中进行展示
    function addUsers() {
     if(user_list.length == 0){
-      $(".mtip div").text("暂无想看该部电影的用户");
+      $(".mtip div").text("附近暂无想看该部电影的用户");
     }
     let row = $("<div>").addClass(
       "row justify-content-center align-items-center"
@@ -221,7 +223,7 @@ $(document).ready(function () {
   }
 
   //5.请求（addtolist的点击函数）：加入想看列表
-  $("#addtolist button").click(function () {
+  $("#addtolist").click(function () {
     let data = {
       movieId: movie_id,
       account: account,
@@ -252,7 +254,7 @@ $(document).ready(function () {
   });
 
   //6.请求（outoflist的点击函数）：退出想看列表
-  $("#outoflist button").click(function () {
+  $("#outoflist").click(function () {
     let data = {
       movie_id: movie_id,
       account: account,
