@@ -36,32 +36,34 @@ $(document).ready(function () {
           longitude: longitude,
           latitude: latitude,
         };
+        console.log("打印地理位置")
+
         console.log(data);
         //测试用数据
         // sessionStorage.setItem("account", account);
         // sessionStorage.setItem("avatar", "https://img1.baidu.com/it/u=4000577006,3068272835&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500");
         // window.location.href = "home.html";
 
-       // 2.请求
+        // 2.请求
         $.ajax({
           //url:"http://127.0.0.1:8080/test",
-          url:"http://192.168.159.207:8080/user/login",
-          type:"POST",
+          url: "http://192.168.159.207:8080/user/login",
+          type: "POST",
           data: JSON.stringify(data),
-          success:function(res){
+          success: function (res) {
             console.log("后端返回数据：");
             console.log(res);
-            if(res.code == 200){
+            if (res.code == 200) {
               alert("登录成功");
-              sessionStorage.setItem("account",account);
+              sessionStorage.setItem("account", account);
               //sessionStorage.setItem("avatar",res.data.avatar);
               window.location.href = "home.html";
             }
-            else{
+            else {
               alert("登录失败，请检查账号和密码是否正确");
             }
           },
-          error:function(err){
+          error: function (err) {
             console.log("登录部分出错，以下是错误信息");
             console.log(err);
           }
@@ -98,21 +100,21 @@ $(document).ready(function () {
 
     $.ajax({
       //url:"http://127.0.0.1:8080/test",
-      url:"http://192.168.159.207:8080/user/register",
-      type:"POST",
+      url: "http://192.168.159.207:8080/user/register",
+      type: "POST",
       data: JSON.stringify(data),
-      success:function(res){
+      success: function (res) {
         console.log(res);
-        if(res.code == 200){
+        if (res.code == 200) {
           alert("注册成功，请使用新账号登录");
           $(".signup").hide();
           $(".login").show();
         }
-        else{
+        else {
           alert("账号已重复，请输入新账号");
         }
       },
-      error:function(err){
+      error: function (err) {
         console.log("注册部分出错，以下是错误信息");
         console.log(err);
       }

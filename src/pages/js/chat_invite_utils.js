@@ -1,3 +1,6 @@
+var server_ip_port = "http://192.168.159.207:8080/"
+
+
 function getTimeNow() {
     var now = new Date();
     var year = now.getFullYear();
@@ -22,42 +25,38 @@ function getTimeNow() {
 
 function get_mine_info() {
     return {
-        user_name: "用户A", // TODO: 从sessionStorage中获取
-        user_avatar:
-            "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp",
+        user_name: sessionStorage.getItem("account"),
+        user_avatar: sessionStorage.getItem("avatar")
     };
 }
+
 var getAvatar = function (user_name) {
-    // TODO: 还是需要一个web worker开线程，不然会阻塞
+    // TODO: 还是需要一个web worker开线程，不然会阻塞         //根据用户名获取头像
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', server_ip_port + 'user/getUserInfo', false);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            console.log('获取头像成功');
+            console.log(response);
+            return response.data.avatar;
+        } else {
+            console.log('获取头像失败');
+            console.log(xhr.statusText);
+            return undefined;
+        }
+    };
+    xhr.onerror = () => {
+        console.log('获取头像失败');
+        console.log(xhr.statusText);
+        return undefined;
+    };
+    xhr.send(JSON.stringify({ account: user_name }));
+}
 
-    // $.ajax({
-    //     url: server_ip_port + "user/getUserInfo",
-    //     type: "POST",
-    //     data: JSON.stringify({
-    //         "account": user_name,
-    //     }),
-    //     contentType: "application/json;charset=utf-8",
-    //     dataType: "json",
-    //     success: function (data) {
-    //         console.log("获取头像成功");
-    //         console.log(data);
-    //         return data.avatar;
-    //     },
-    //     error: function (data) {
-    //         console.log("获取头像失败");
-    //     },
-    // });
 
-    if (user_name == "我自己")
-        // TODO: 根据用户名获取头像
-        return "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
-    if (user_name == "用户A")
-        return "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
-    if (user_name == "用户B")
-        return "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
-    else
-        return "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
-};
+
 
 
 function formatTime(timeString) {
@@ -76,5 +75,22 @@ function formatTime(timeString) {
         const month = time.getMonth() + 1;
         const day = time.getDate();
         return `${year}-${month}-${day}`;
+    }
+}
+
+
+function get_movie_info_with_id(id) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', server_ip_port + 'movie/info?movie_id=' + id, false);
+    xhr.send();
+    if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        console.log('获取电影信息');
+        console.log(response);
+        return response.data;
+    } else {
+        console.error('获取电影信息失败');
+        console.log(xhr);
+        return undefined;
     }
 }

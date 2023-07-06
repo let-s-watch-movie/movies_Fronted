@@ -91,15 +91,17 @@ $(document).ready(function () {
 
   var get_movie_poster_by_id = function (movie_id) {
     // TODO
-    return "https://p0.pipi.cn/mmdb/fb738671be10fab860281ec0afaeb3403530a.jpg?imageView2/1/w/464/h/644";
+    let movie_info = get_movie_info_with_id(movie_id);
+    return movie_info.poster;
   };
   var get_movie_name_by_id = function (movie_id) {
     // TODO
-    return "这是电影名";
+    let movie_info = get_movie_info_with_id(movie_id);
+    return movie_info.movieName;
   };
   var get_user_avatar_by_name = function (user_name) {
     // TODO
-    return "https://p0.pipi.cn/mmdb/fb738671be10fab860281ec0afaeb3403530a.jpg?imageView2/1/w/464/h/644";
+    return getAvatar(user_name)
   };
   var get_stataus_text_by_status = function (status) {
     switch (status) {
@@ -159,7 +161,8 @@ $(document).ready(function () {
   };
 
   var get_my_invite_unhandled = function () {
-    data.invite_all_list.filter(function (item) {
+
+    data.invite_my_invite_unhandled_list =  data.invite_all_list.filter(function (item) {
       return (
         // 筛选，inviter_account == mine_info.user_name && status == 0 // 所有未处理的，划到我的邀请
         item.inviterAccount == data.mine_info.user_name && item.status == 0
@@ -168,7 +171,7 @@ $(document).ready(function () {
   };
 
   var get_my_receive_unhandled = function () {
-    data.invite_all_list.filter(function (item) {
+    data.invite_my_receive_unhandled_list =  data.invite_all_list.filter(function (item) {
       return (
         // 筛选, receiver_account == mine_info.user_name && status == 0 // 所有未处理的，划到我的新被邀约请求
         item.receiverAccount == data.mine_info.user_name && item.status == 0
@@ -177,7 +180,7 @@ $(document).ready(function () {
   };
 
   var get_agreed_both = function () {
-    data.invite_all_list.filter(function (item) {
+   data.invite_agreed_both_list =  data.invite_all_list.filter(function (item) {
       // 筛选, status == 1 // 所有同意的，就是双方都同意的 划到我的相约
       return item.status == 1;
     });
@@ -244,10 +247,10 @@ $(document).ready(function () {
         obeject_account +
         '</p></div></td><td><span class="badge ' + status_class + ' rounded-pill d-inline">' +
         get_stataus_text_by_status(i.status) +
-        '</span></td><td><button id="fix" type="button" class="btn btn-link btn-sm btn-rounded" data-mdb-toggle="modal" data-mdb-target="#changeInvitationStatusModal" style="border: 1px solid #ced4da">修改</button></td></tr>'
+        '</span></td><td><button type="button" class="fix btn btn-link btn-sm btn-rounded" data-mdb-toggle="modal" data-mdb-target="#changeInvitationStatusModal" style="border: 1px solid #ced4da">修改</button></td></tr>'
       );
 
-      $("#fix").click(function () {
+      $(".fix").click(function () {
         setModalValues(i.movieId, obeject_account, type);
       }
       );
@@ -272,10 +275,10 @@ $(document).ready(function () {
 
   // 获取所有的邀约信息
   $.ajax({
-    url: server_ip_port + "invite/queryRequestByReceiver",
+    url: server_ip_port + "invite/queryRequestAll",
     // url:"http://192.168.100.201:8080/invite/queryRequestByReceiver",
     method: "POST",
-    data: JSON.stringify({ "receiverAccount": data.mine_info.user_name }),
+    data: JSON.stringify({ "inviterAccount": data.mine_info.user_name }),
 
     success: function (response) {
       console.log("Success fetching invitations:");
@@ -329,11 +332,11 @@ $(document).ready(function () {
   $("#rejectInvitation").click(function () {
     let req_data = {}
     if (data.modal_value.type == "来源") {
-      req_data = { "inviterAccount": data.modal_value.account, "receiverAccount": data.mine_info.user_name, "movieId": data.modal_value.movie_id }
+      req_data = { "inviterAccount": data.modal_value.objectName, "receiverAccount": data.mine_info.user_name, "movieId": data.modal_value.movieId }
     } else {
-      req_data = { "inviterAccount": data.mine_info.user_name, "receiverAccount": data.modal_value.account, "movieId": data.modal_value.movie_id }
+      req_data = { "inviterAccount": data.mine_info.user_name, "receiverAccount": data.modal_value.objectName, "movieId": data.modal_value.movieId }
     }
-
+    console.log(req_data)
     $.ajax({
       url: server_ip_port + "invite/refuse",
       method: "POST",
@@ -361,10 +364,11 @@ $(document).ready(function () {
   $("#acceptInvitation").click(function () {
     let req_data = {}
     if (data.modal_value.type == "来源") {
-      req_data = { "inviterAccount": data.modal_value.account, "receiverAccount": data.mine_info.user_name, "movieId": data.modal_value.movie_id }
+      req_data = { "inviterAccount": data.modal_value.objectName, "receiverAccount": data.mine_info.user_name, "movieId": data.modal_value.movieId }
     } else {
-      req_data = { "inviterAccount": data.mine_info.user_name, "receiverAccount": data.modal_value.account, "movieId": data.modal_value.movie_id }
+      req_data = { "inviterAccount": data.mine_info.user_name, "receiverAccount": data.modal_value.objectName, "movieId": data.modal_value.movieId }
     }
+    console.log(req_data)
     $.ajax({
       url: server_ip_port + "invite/accept",
       method: "POST",
