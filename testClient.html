@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="static\js\jquery-1.11.2.min.js"></script>
+  </head>
+
+  <body>
+    <button style="width: 100px; height: 100px">点击发送请求</button>
+    <script>
+      // 发起GET请求
+      $(function () {
+        $("button").click(function () {
+          $.ajax({
+            url: "http://localhost:3000/test",
+            type: "GET",
+            success: function (response) {
+              // 打印服务端给的data
+              console.log("试一下");
+              console.log(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log("失败");
+              console.log(jqXHR, textStatus, errorThrown);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

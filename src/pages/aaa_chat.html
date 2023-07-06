@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="../../static/mdb/img/mdb-favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="../../static/mdb/css/bootstrap-chat.min.css" />
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <link rel="stylesheet" href="css/aaa_chat.css" />
+
+  <!--全页面 最底层 -->
+  <section style="/*background-color: #c4e9f9;*/ border: red 1px solid">
+    <!-- 页面中央区 container  -->
+    <div class="container py-5" style="background-color: #c4e9f9; border: rgb(0, 255, 145) 1px solid">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- 中心聊天container -->
+          <div class="card" id="chat3" style="border-radius: 15px; border: red 1px solid">
+            <!-- 以下这个组件row处在的容器body -->
+            <div class="card-body">
+              <!-- 以下这个组件全部做为一个row -->
+              <div class="row">
+                <!-- 以下是页面左边 -->
+                <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                  <div class="p-3">
+                    <!-- 内边距为3的类 -->
+
+                    <ul class="nav nav-pills justify-content-between mb-3" id="ex-with-icons">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#">聊天</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./aaa_invitation.html">邀约</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./aaa_new_chat.html">新聊天</a>
+                      </li>
+                    </ul>
+
+                    <!-- 搜索框 -->
+                    <!-- <div class="input-group mb-3" style="border-radius: 50px; border: 1px solid #ced4da">
+                      <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                      </span>
+                      <input type="search" class="form-control" placeholder="搜索聊天记录"
+                        style="border-radius: 50px; border: 0px solid white" />
+                    </div> -->
+
+                    <!-- 聊天列表 -->
+                    <!-- Tab navs -->
+                    <div style="
+                          position: relative;
+                          height: 800px;
+                          overflow-y: scroll; /*border: blue 1px solid*/
+                        ">
+                      <!-- nav nav-tabs class text-center不能要 -->
+                      <ul class="nav nav-tabs flex-column list-unstyled mb-0" id="chat_object_list">
+                        <li class="chat-object p-2 border-bottom" style="/*border: green 1px solid*/">
+                          <!--class nav-link 和 nav nav-tabs配合，搞得难看 -->
+                          <a class="nav-link d-flex justify-content-between active" id="用户A" data-mdb-toggle="tab"
+                            href="#v-tabs-home">
+                            <!-- a的id不能以后是home了，对应与用户id -->
+                            <div class="d-flex flex-row">
+                              <div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                  alt="avatar" class="d-flex align-self-center me-3" width="60" />
+                                <span class="badge bg-success badge-dot"></span>
+                              </div>
+                              <div class="pt-1">
+                                <p class="fw-bold mb-0">用户B</p>
+                                <p class="small text-muted">123456789</p>
+                              </div>
+                            </div>
+                            <div class="pt-1">
+                              <p class="small text-muted mb-1">刚刚</p>
+                              <span class="badge bg-danger rounded-pill float-end">3</span>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Tab navs -->
+                  </div>
+                </div>
+
+                <!-- 以下是页面右边 -->
+                <div class="col-md-6 col-lg-7 col-xl-8">
+                  <!-- Tab content -->
+
+                  <!-- 以下是header -->
+                  <div
+                    class="card-header d-flex justify-content-center align-items-center p-3 bg-info text-white border-bottom-0 mt-3"
+                    style="
+                        border-top-left-radius: 15px;
+                        border-top-right-radius: 15px;
+                      ">
+                    <!-- <i class="fas fa-angle-left"></i> 向左返回图标 -->
+                    <p class="mb-0 fw-bold" id="chat_object_now">用户</p>
+                    <!-- <i class="fas fa-times"></i>  叉号图标 -->
+                  </div>
+
+                  <!-- 以下是聊天框 -->
+                  <div id="messageContainer" class="pt-3 pe-3" style="
+                        height: 500px;
+                        overflow-y: scroll; /*border: green 1px solid*/
+                      ">
+                    <!-- style="position: relative; height: 800px;" -->
+                    <div class="d-flex flex-row justify-content-start">
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                        alt="avatar 1" style="width: 45px; height: 100%" />
+                      <div>
+                        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7">
+                          1 发过来
+                        </p>
+                        <p class="small ms-3 mb-3 rounded-3 text-muted float-end">
+                          12:00 PM | Aug 13
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-end">
+                      <div>
+                        <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">
+                          2发过去
+                        </p>
+                        <p class="small me-3 mb-3 rounded-3 text-muted">
+                          12:00 PM | Aug 13
+                        </p>
+                      </div>
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                        alt="avatar 1" style="width: 45px; height: 100%" />
+                    </div>
+                    <div class="d-flex flex-row justify-content-start">
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                        alt="avatar 1" style="width: 45px; height: 100%" />
+                      <div>
+                        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7">
+                          3发过来
+                        </p>
+                        <p class="small ms-3 mb-3 rounded-3 text-muted float-end">
+                          12:00 PM | Aug 13
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 以下是输入框 -->
+                  <div class="text-muted d-flex justify-content-start pe-3 pt-3 mt-2">
+                    <textarea class="form-control form-control-lg" id="messageInput" value="" placeholder="请输入消息"
+                      style="border: 1px solid #ced4da">
+                      </textarea>
+                    <!-- <a class="ms-1 text-muted" href="#!"><i
+                                                        class="fas fa-paperclip"></i></a>
+                                                <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a> -->
+                    <!-- <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a> -->
+                  </div>
+
+                  <div class="d-flex justify-content-around mt-3">
+                    <button type="button" id="sendInvite" data-mdb-toggle="modal" data-mdb-target="#sendInvitationModal"
+                      class="btn btn-primary me-3">
+                      发送邀约
+                    </button>
+                    <!-- 右外边距 3 -->
+                    <button type="button" id="changeChatStatus" data-mdb-toggle="modal"
+                      data-mdb-target="#changeChatStatusModal" class="btn btn-primary me-3">
+                      修改聊天状态
+                    </button>
+                    <button type="button" id="sendMessage" class="btn btn-primary ms-3">
+                      发送消息
+                    </button>
+                    <!-- 左外边距 3 -->
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="sendInvitationModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header" style="border-bottom: white">
+                          <h5 class="modal-title ms-5" id="inviteModalLabel">
+                            确定发送邀约吗👀
+                          </h5>
+                          <button type="button" class="btn-close" data-mdb-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">输入电影id:</label>
+                              <input type="text" class="form-control" id="movieId" style="border: 1px solid #ced4da" />
+                            </div>
+                          </form>
+                        </div>
+                        <div class="d-flex justify-content-around mb-5">
+                          <button type="button" class="btn btn-danger" data-mdb-dismiss="modal">
+                            关闭
+                          </button>
+                          <button id="sendInviteConfirmly" type="button" class="btn btn-success">
+                            发送
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="changeChatStatusModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header mb-5" style="border-bottom: white">
+                          <h5 class="modal-title ms-5" id="inviteModalLabel">
+                            请选择聊天状态
+                          </h5>
+                          <button type="button" class="btn-close" data-mdb-dismiss="modal"></button>
+                        </div>
+                        <!-- <div class="modal-body">
+                          </div> -->
+                        <div class="d-flex justify-content-around mb-5">
+                          <button id="abortChat" type="button" class="btn btn-primary" data-mdb-dismiss="modal">
+                            <!-- TODO -->
+                            中止聊天
+                          </button>
+                          <button id="resumeChat" type="button" class="btn btn-primary" data-mdb-dismiss="modal">
+                            恢复聊天
+                            <!-- TODO -->
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="../../static/mdb/js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="../../static/js/jquery-1.11.2.min.js"></script>
+
+  <script src="js/chat_invite_utils.js"></script>
+
+  <script src="js/chat.js"></script>
+</body>
+
+</html>

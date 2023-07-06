@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="../../static/mdb/img/mdb-favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="../../static/mdb/css/bootstrap-chat.min.css" />
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <link rel="stylesheet" href="css/aaa_invitation.css" />
+
+  <!--全页面 最底层 -->
+  <section style="/*background-color: #c4e9f9;*/ border: red 1px solid">
+    <!-- 页面中央区 container  -->
+    <div class="container py-5" style="background-color: #c4e9f9; border: rgb(0, 255, 145) 1px solid">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- 中心聊天container -->
+          <div class="card" id="chat3" style="border-radius: 15px; border: red 1px solid">
+            <!-- 以下这个组件row处在的容器body -->
+            <div class="card-body">
+              <!-- 以下这个组件全部做为一个row -->
+              <div class="row">
+                <!-- 以下是页面左边 -->
+                <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                  <div class="p-3">
+                    <!-- 内边距为3的类 -->
+
+                    <!-- 内容 navs -->
+                    <ul class="nav nav-pills justify-content-between mb-3" id="ex-with-icons">
+                      <li class="nav-item">
+                        <a class="nav-link" href="./aaa_chat.html">聊天</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./aaa_invitation.html">邀约</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#">新聊天</a>
+                      </li>
+                    </ul>
+                    <!-- 内容 navs -->
+
+                    <!-- 聊天列表 -->
+                    <!-- Tab navs -->
+                    <div style="
+                          position: relative;
+                          height: 800px;
+                          overflow-y: scroll; /* border: blue 1px solid; */
+                        ">
+                      <!-- nav nav-tabs class text-center不能要 -->
+                      <ul class="nav nav-tabs flex-column list-unstyled mb-0" id="handle_object_list">
+                        <li class="p-2 border-bottom" style="/*border: green 1px solid*/">
+                          <!--class nav-link 和 nav nav-tabs配合，搞得难看 -->
+                          <a class="nav-link d-flex justify-content-between active" id="v-tabs-home-tab"
+                            data-mdb-toggle="tab" href="#v-tabs-home">
+                            <!-- a的id不能以后是home了，对应与用户id -->
+                            <div class="d-flex flex-row">
+                              <div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                  alt="avatar" class="d-flex align-self-center me-3" width="60" />
+                              </div>
+                              <div class="pt-1">
+                                <p class="fw-bold mb-0">用户A</p>
+                                <p class="small text-muted">123456789</p>
+                              </div>
+                            </div>
+                            <div class="pt-1">
+                              <p class="small text-muted mb-1">刚刚</p>
+                              <span class="badge bg-primary rounded-pill float-end">新</span>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="p-2 border-bottom" style="/*border: green 1px solid*/">
+                          <a class="nav-link d-flex justify-content-between" id="v-tabs-profile-tab"
+                            data-mdb-toggle="tab" href="#v-tabs-home">
+                            <!--注意 1. a的class 默认没有active 2. a的id要改，3. href要改，
+                                                                -->
+                            <div class="d-flex flex-row">
+                              <div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
+                                  alt="avatar" class="d-flex align-self-center me-3" width="60" />
+                              </div>
+                              <div class="pt-1">
+                                <p class="fw-bold mb-0">用户b</p>
+                                <p class="small text-muted">1234567809</p>
+                              </div>
+                            </div>
+                            <div class="pt-1">
+                              <p class="small text-muted mb-1" style="margin-left: 20px">
+                                昨天
+                              </p>
+                              <span class="badge bg-danger rounded-pill float-end">已拒绝</span>
+                            </div>
+                          </a>
+                        </li>
+
+                        <li class="p-2 border-bottom" style="/*border: green 1px solid*/">
+                          <a class="nav-link d-flex justify-content-between" id="v-tabs-profile-tab"
+                            data-mdb-toggle="tab" href="#v-tabs-home">
+                            <div class="d-flex flex-row">
+                              <div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
+                                  alt="avatar" class="d-flex align-self-center me-3" width="60" />
+                              </div>
+                              <div class="pt-1">
+                                <p class="fw-bold mb-0">用户c</p>
+                                <p class="small text-muted">hello1</p>
+                              </div>
+                            </div>
+                            <div class="pt-1">
+                              <p class="small text-muted mb-1" style="margin-left: 20px">
+                                昨天
+                              </p>
+                              <span class="badge bg-success rounded-pill float-end">已同意</span>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Tab navs -->
+                  </div>
+                </div>
+
+                <!-- 以下是页面右边 -->
+                <div class="col-md-6 col-lg-7 col-xl-8" style="display: none;" id="page_right">
+                  <!-- 以下是header -->
+                  <div
+                    class="card-header d-flex justify-content-center align-items-center p-3 bg-info text-white border-bottom-0 mt-3"
+                    style="
+                        border-top-left-radius: 15px;
+                        border-top-right-radius: 15px;
+                      ">
+                    <!-- <i class="fas fa-angle-left"></i> 向左返回图标 -->
+                    <p class="mb-0 fw-bold">新聊天请求</p>
+                    <!-- <i class="fas fa-times"></i>  叉号图标 -->
+                  </div>
+
+                  <!-- 以下是聊天框 -->
+                  <div id="messageContainer" class="pt-3 pe-3" style="
+                        height: 500px;
+                        overflow-y: scroll;
+                        border: green 1px solid;
+                        
+                      ">
+                    <!-- style="position: relative; height: 800px;" -->
+                    <div class="d-flex flex-row justify-content-start">
+                      <img id="request_avatar"
+                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
+                        style="width: 45px; height: 100%" />
+                      <div>
+                        <p id="request_content" class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7">
+                          
+                        </p>
+                        <p id="request_time" class="small ms-3 mb-3 rounded-3 text-muted float-end">
+                          
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 以下是确认框 -->
+                  <div class="text-muted d-flex justify-content-start pe-3 pt-3 mt-2">
+                    <div class="chat_confim">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">是否开始聊天？</h5>
+
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-around">
+                          <button id="agree_click" type="button" class="btn btn-success">
+                            开始
+                          </button>
+                          <button id="reject_click" type="button" class="btn btn-danger">
+                            拒绝
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="../../static/mdb/js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="../../static/mdb/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+
+  <script src="js/chat_invite_utils.js"></script>
+
+  <script src="js/chat_new_chat.js"></script>
+</body>
+
+</html>

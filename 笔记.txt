@@ -1,0 +1,50 @@
+
+
+
+
+
+前端函数js交互
+我暂且按照
+    出现，绑定，再点击等事件 时间顺序思考代码调用顺序
+
+函数的分类
+    基本划分为
+    和后端交流数据的函数
+        要数据
+        传数据
+    
+    前端自己的函数
+        事件函数
+        逻辑函数
+        工具函数
+    
+
+
+写代码就是得管 数据（包括页面元素）的 
+    从生到活动，到死亡
+    而且还不是只管一个，而是要管很多个，要总管全局，协调各方
+这就是软件构造世界
+
+
+$.ajax({
+    type: "POST",
+    url: "http://192.168.22.201:8080/chat/sendMessage",
+    data: JSON.stringify({
+        "sendingAccount": "用户B",
+        "receiverAccount": "用户A",
+        "content": messageText,
+    }),
+    contentType: "application/json",  // 标记发送内容的数据格式
+    dataType: "json",                 // 标记期望返回的数据格式 
+    success: function (response) {
+        console.log("成功发送消息到服务器: " + messageText);
+
+        console.log(response);
+    },
+    error: function (response) {
+        
+        console.log("发送消息到服务器失败: " + messageText); 
+        console.log(response);
+    }
+});
+
