@@ -36,12 +36,7 @@ $(document).ready(function () {
           longitude: longitude,
           latitude: latitude,
         };
-<<<<<<< HEAD
-        console.log("打印地理位置")
-
-=======
         console.log("位置：");
->>>>>>> 3e514cee25bf2aaad0a02706ba625fc894c45f42
         console.log(data);
         //测试用数据
         // sessionStorage.setItem("account", account);
@@ -62,8 +57,7 @@ $(document).ready(function () {
               sessionStorage.setItem("account", account);
               //sessionStorage.setItem("avatar",res.data.avatar);
               window.location.href = "home.html";
-            }
-            else {
+            } else {
               alert("登录失败，请检查账号和密码是否正确");
             }
           },
@@ -71,8 +65,8 @@ $(document).ready(function () {
             console.log("登录部分出错，以下是错误信息");
             console.log(err);
             alert("登录失败，请检查账号和密码是否正确");
-          }
-        })
+          },
+        });
       });
     } else {
       alert("浏览器不支持地理位置获取。");
@@ -93,7 +87,7 @@ $(document).ready(function () {
     //3. 发请求
     let data = {
       account: account,
-      password: password1
+      password: password1,
     };
     console.log("注册函数部分");
     console.log(data);
@@ -114,16 +108,15 @@ $(document).ready(function () {
           alert("注册成功，请使用新账号登录");
           $(".signup").hide();
           $(".login").show();
-        }
-        else {
+        } else {
           alert("账号已重复，请输入新账号");
         }
       },
       error: function (err) {
         console.log("注册部分出错，以下是错误信息");
         console.log(err);
-      }
-    })
+      },
+    });
   });
 
   //4. 获取用户经纬度函数

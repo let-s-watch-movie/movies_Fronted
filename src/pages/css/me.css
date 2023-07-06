@@ -3,6 +3,9 @@
   margin-left: 20px;
   font-size: 20px;
 }
+/* body{
+  background-image: url("../../../static/img/background.png");
+} */
 
 .navbar .avatar{
   object-fit: cover;

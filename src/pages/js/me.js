@@ -182,12 +182,13 @@ $(document).ready(function () {
       success: function (res) {
         console.log("用户详细信息返回信息: ");
         console.log(res);
+        let redata = res.data;
         //赋值操作
         user_info = {
-          sex: res.sex ? res.sex : "还未填写",
-          age: res.age,
-          register_time: res.register_time,
-          description: res.description ? res.description : "还未填写",
+          sex: redata.sex ? redata.sex : "还未填写",
+          age: redata.age,
+          register_time: redata.register_time,
+          description: redata.description ? redata.description : "还未填写",
         };
         show_user_info(user_info);
       },
@@ -315,6 +316,7 @@ $(document).ready(function () {
           user_info.description = new_description;
           show_user_info(user_info);
           alert("修改成功!");
+          $("#edit_info #btn-close").click();
       } else {
         console.log("修改失败:");
         console.log(xhr.statusText);
