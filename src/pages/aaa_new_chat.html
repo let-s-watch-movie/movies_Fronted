@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-
+  <title>一起看-新聊天</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
   <!-- Google Fonts Roboto -->
@@ -103,7 +103,7 @@
                         ">
                       <!-- nav nav-tabs class text-center不能要 -->
                       <ul class="nav nav-tabs flex-column list-unstyled mb-0" id="handle_object_list">
-                        <li class="p-2 border-bottom">
+                        <li class="p-2 border-bottom" style="display: none;">
                           <!--class nav-link 和 nav nav-tabs配合，搞得难看 -->
                           <a class="nav-link d-flex justify-content-between active" id="v-tabs-home-tab"
                             data-mdb-toggle="tab" href="#v-tabs-home">
@@ -114,59 +114,13 @@
                                   alt="avatar" class="d-flex align-self-center me-3" width="60" />
                               </div>
                               <div class="pt-1">
-                                <p class="fw-bold mb-0">用户A</p>
+                                <p class="fw-bold mb-0">初始页面不显示的用户</p>
                                 <p class="small text-muted">123456789</p>
                               </div>
                             </div>
                             <div class="pt-1">
                               <p class="small text-muted mb-1">刚刚</p>
                               <span class="badge bg-primary rounded-pill float-end">新</span>
-                            </div>
-                          </a>
-                        </li>
-
-                        <li class="p-2 border-bottom">
-                          <a class="nav-link d-flex justify-content-between" id="v-tabs-profile-tab"
-                            data-mdb-toggle="tab" href="#v-tabs-home">
-                            <!--注意 1. a的class 默认没有active 2. a的id要改，3. href要改，
-                                                                -->
-                            <div class="d-flex flex-row">
-                              <div>
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
-                                  alt="avatar" class="d-flex align-self-center me-3" width="60" />
-                              </div>
-                              <div class="pt-1">
-                                <p class="fw-bold mb-0">用户b</p>
-                                <p class="small text-muted">1234567809</p>
-                              </div>
-                            </div>
-                            <div class="pt-1">
-                              <p class="small text-muted mb-1" style="margin-left: 20px">
-                                昨天
-                              </p>
-                              <span class="badge bg-danger rounded-pill float-end">已拒绝</span>
-                            </div>
-                          </a>
-                        </li>
-
-                        <li class="p-2 border-bottom">
-                          <a class="nav-link d-flex justify-content-between" id="v-tabs-profile-tab"
-                            data-mdb-toggle="tab" href="#v-tabs-home">
-                            <div class="d-flex flex-row">
-                              <div>
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
-                                  alt="avatar" class="d-flex align-self-center me-3" width="60" />
-                              </div>
-                              <div class="pt-1">
-                                <p class="fw-bold mb-0">用户c</p>
-                                <p class="small text-muted">hello1</p>
-                              </div>
-                            </div>
-                            <div class="pt-1">
-                              <p class="small text-muted mb-1" style="margin-left: 20px">
-                                昨天
-                              </p>
-                              <span class="badge bg-success rounded-pill float-end">已同意</span>
                             </div>
                           </a>
                         </li>
@@ -214,22 +168,10 @@
                   </div>
 
                   <!-- 以下是确认框 -->
-                  <div class="text-muted d-flex justify-content-start pe-3 pt-3 mt-2">
-                    <div class="chat_confim">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">是否开始聊天？</h5>
+                  <div id="handle_status_area" class="text-muted d-flex justify-content-start pe-3 pt-3 mt-2">
+                    <!-- 点击新聊天请求初始化和点击处理事件后更新这里 -->
 
-                        <p class="card-text"></p>
-                        <div class="d-flex justify-content-around">
-                          <button id="agree_click" type="button" class="btn btn-success">
-                            开始
-                          </button>
-                          <button id="reject_click" type="button" class="btn btn-danger">
-                            拒绝
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>
