@@ -11,12 +11,12 @@ $(document).ready(function () {
      */
     var data = {
         mine_info: {
-            user_name: "用户A",
+            user_name: "",
             user_avatar:
-                "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp",
+                "",
         },
 
-        handle_object_now_name: "用户B",
+        handle_object_now_name: "初始页面不显示的用户",
         handle_object_list: [
             // {
             //     "chatId": 8,
@@ -98,8 +98,24 @@ $(document).ready(function () {
     /// 关于点开聊天对象的处理
     var handle_object_click = function (handle_object_name) {
 
-        let updata_dom_id = "#" + data.handle_object_now_name;
-        $(updata_dom_id).removeClass("active");
+        if (data.handle_object_now_name != "") {
+            let updata_dom_id = "#" + data.handle_object_now_name;
+            $(updata_dom_id).removeClass("active");
+        }
+
+        // 向缓存查询是否已经处理过这个聊天对象的请求, 以添加合适的内容
+        var append_content = '<div class="chat_confim"><div class="card-body text-center"><h5 class="card-title">是否开始聊天？</h5><p class="card-text"></p><div class="d-flex justify-content-around"><button id="agree_click" type="button" class="btn btn-success">开始</button><button id="reject_click" type="button" class="btn btn-danger">拒绝</button></div></div></div>';
+        if (localStorage.getItem(data.mine_info.user_name + handle_object_name + "handled_result") != null) {
+            append_content = '<div class="card-body text-center">' +
+                '<h5 class="card-title"></h5>' +
+                '你已经' + localStorage.getItem(data.mine_info.user_name + handle_object_name + "handled_result") + '了这个用户的请求' +
+                '<p class="card-text"></p>' +
+                '<div class="d-flex justify-content-around">'
+            '</div>' +
+                '</div>'
+        }
+        $("#handle_status_area").html(append_content);  // 向#handle_status_area容器添加内容
+
 
         data.handle_object_now_name = handle_object_name; // 更新当前聊天对象的名字
         updata_dom_id = "#" + data.handle_object_now_name;
@@ -226,6 +242,22 @@ $(document).ready(function () {
             console.log("点击了聊天请求对象");
             console.log("点击了聊天请求对象：" + $(this).children("a").attr("id"));
             handle_object_click($(this).children("a").attr("id"));
+
+            try {
+                // 绑定同意按钮点击事件（dom元素原本就有）
+                $("#agree_click").click(function () {
+                    hand_agree_click();
+                });
+
+                // 绑定拒绝事件 （dom元素原本就有）
+                $("#reject_click").click(function () {
+                    handle_reject_click();
+                });
+            } catch (e) {
+                console.log(e);
+                console.log("说明已经处理过了，不用再绑定事件了")
+            }
+
         });
     }
 
@@ -243,6 +275,13 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 alert("拒绝成功");
+
+
+                // 修改缓存中的聊天对象为已处理：拒绝
+                localStorage.setItem(data.mine_info.user_name + data.handle_object_now_name + "handled_result", "拒绝")
+                // 刷新页面，就是重新点击当前聊天对象
+                handle_object_click(data.handle_object_now_name);
+
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert("出现了错误");
@@ -265,10 +304,45 @@ $(document).ready(function () {
             dataType: "json", // 指定返回的数据类型，设置为json
             success: function (response) {
                 console.log(response);
-                alert("同意成功");
+
+                // 修改缓存中的聊天对象为已处理：同意
+                localStorage.setItem(data.mine_info.user_name + data.handle_object_now_name + "handled_result", "同意")
+                // 刷新页面，就是重新点击当前聊天对象
+                handle_object_click(data.handle_object_now_name);
+
+                // 将同意框修改为已同意
+
+                // 发消息给对方
+                // 发送消息到服务器
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', server_ip_port + 'chat/sendMessage', false);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        console.log('成功发送消息到服务器: ' + "我已经同意你的聊天请求了，现在我们可以开始聊天了！");
+                        alert("同意成功");
+                        console.log(xhr.responseText);
+
+                    } else {
+                        console.log('发送初始消息到服务器失败: ' + "我已经同意你的聊天请求了，现在我们可以开始聊天了！");
+                        alert("发送初始消息失败: " + "我已经同意你的聊天请求了，现在我们可以开始聊天了！");
+                        console.log(xhr.statusText);
+                    }
+                };
+                xhr.onerror = () => {
+                    console.log('网络错误，发送初始消息到服务器失败: ' + "我已经同意你的聊天请求了，现在我们可以开始聊天了！");
+                    alert("网络错误，发送初始消息失败: " + "我已经同意你的聊天请求了，现在我们可以开始聊天了！");
+                    console.log(xhr.statusText);
+                };
+                xhr.send(JSON.stringify({
+                    sendingAccount: data.mine_info.user_name,
+                    receiverAccount: data.handle_object_now_name,
+                    content: "我已经同意你的聊天请求了，现在我们可以开始聊天了！",
+                }));
+
             },
             error: function (xhr, textStatus, errorThrown) {
-                alert("出现了错误");
+                alert("同意聊天：网络出现了错误");
                 console.log(xhr);
                 console.log(textStatus);
                 console.log(errorThrown);
@@ -314,16 +388,6 @@ $(document).ready(function () {
     // // 存储新聊天请求列表表到缓存中 // TODO: 先不写
     // localStorage.setItem("chat_object_list", data.chat_object_list);
 
-    // 绑定同意按钮点击事件（dom元素原本就有）
-    $("#agree_click").click(function () {
-        hand_agree_click();
-    });
-
-    // 绑定拒绝事件 （dom元素原本就有）
-    $("#reject_click").click(function () {
-        handle_reject_click();
-    });
-
 
     ////////////////////////////////////////////////////////////////周期活动
 
@@ -331,39 +395,39 @@ $(document).ready(function () {
      * 5.
      * 定时询问服务器是否有新消息
      */
-    // // 创建一个新的Web Worker
-    var worker = new Worker("./js/aaa_chat_worker.js");
+    // // // 创建一个新的Web Worker
+    // var worker = new Worker("./js/aaa_chat_worker.js");
 
-    // 在定时器中向Web Worker发送消息
-    setInterval(function () {
-        console.log("向Web Worker发送消息,要求更新聊天对象列表");
-        var req = {
-            message: "start",
-            mine_name: data.mine_info.user_name
-        }
-        worker.postMessage(req);
-    }, 5000); // 5秒询问一次
+    // // 在定时器中向Web Worker发送消息
+    // setInterval(function () {
+    //     console.log("向Web Worker发送消息,要求更新聊天对象列表");
+    //     var req = {
+    //         message: "start",
+    //         mine_name: data.mine_info.user_name
+    //     }
+    //     worker.postMessage(req);
+    // }, 5000); // 5秒询问一次
 
-    // 监听Web Worker的消息
-    worker.onmessage = function (event) {
-        console.log("回到chat.js")
-        console.log("chat.js收到:");
-        console.log(event);
-        // TODO:这里有啥
-        if (event.data.message == "获取一次新的聊天列表成功") {
-            console.log("chat.js最后获取聊天对象列表成功")
-            if (data.chat_object_list == null || data.chat_object_list == undefined) {
-                data.chat_object_list = []
-            }
+    // // 监听Web Worker的消息
+    // worker.onmessage = function (event) {
+    //     console.log("回到chat.js")
+    //     console.log("chat.js收到:");
+    //     console.log(event);
+    //     // TODO:这里有啥
+    //     if (event.data.message == "获取一次新的聊天列表成功") {
+    //         console.log("chat.js最后获取聊天对象列表成功")
+    //         if (data.chat_object_list == null || data.handle_object_list == undefined) {
+    //             data.chat_object_list = []
+    //         }
 
-            console.log("进入chat.js的更新dom函数")
-            update_chat_object_list(event.data.data);
-            dom_build_chat_object_list(data.chat_object_list);
-            dom_bind_chat_object_click_event();
+    //         console.log("进入chat.js的更新dom函数")
+    //         update_handle_object_list(event.data.data);
+    //         dom_build_handle_object_list(data.handle_object_list);
+    //         dom_bind_handle_object_click_event();
 
-        } else {
-            console.log("chat.js最后获取聊天对象列表失败")
-        }
+    //     } else {
+    //         console.log("chat.js最后获取聊天对象列表失败")
+    //     }
 
-    };
+    // };
 });

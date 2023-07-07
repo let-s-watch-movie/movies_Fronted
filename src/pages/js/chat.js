@@ -101,8 +101,7 @@ $(document).ready(function () {
 
                 transformedData.push({
                     user_name: chat.sendingAccount,
-                    user_avatar:
-                        "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp",
+                    user_avatar: getAvatar(chat.sendingAccount),
                     latest_message: chat.content.length > 10 ? chat.content.slice(0, 10) + "..." : chat.content,
                     latest_message_time: chat.timeStamp.replace("T", " "),
                     is_online: true,
@@ -254,16 +253,16 @@ $(document).ready(function () {
         $("#messageInput").val(""); // 清空输入框
 
         // 获取并显示消息：
-        if (localStorage.getItem("messages" + chat_object_name) == undefined) { //从本地存储中获取以前保存的消息
-            localStorage.setItem("messages" + chat_object_name, "");
+        if (localStorage.getItem(data.mine_info.user_name + "messages" + chat_object_name) == undefined) { //从本地存储中获取以前保存的消息
+            localStorage.setItem(data.mine_info.user_name + "messages" + chat_object_name, "");
         }
-        var savedMessages = localStorage.getItem("messages" + chat_object_name);
+        var savedMessages = localStorage.getItem(data.mine_info.user_name + "messages" + chat_object_name);
         if (savedMessages) {
             $("#messageContainer").append(savedMessages);
         }
 
         var new_messages = get_chat_object_new_contents_by_name(chat_object_name); // // 获取并加载新消息
-        if (new_messages.length != 0) {
+        if (new_messages != undefined && new_messages != null && new_messages.length != 0) {
             console.log("获取到的新消息不为空");
             for (let i = 0; i < new_messages.length; i++) {
                 chat_append_message(
@@ -274,13 +273,13 @@ $(document).ready(function () {
                 );
             }
             localStorage.setItem( // 更新本地存储中的消息
-                "messages" + chat_object_name,
+                data.mine_info.user_name + "messages" + chat_object_name,
                 $("#messageContainer").html()
             );
 
             // 更新data.chat_object_list中的数据和缓存中data.chat_object_list：new_messages置空, 未读消息数置0
             clear_chat_object_new_contents_by_name(chat_object_name); // 清空新消息,否则会重复加载，将获取的消息都放到本地，然后data里面置空
-            localStorage.setItem("chat_object_list", JSON.stringify(data.chat_object_list));// 更新缓存中的聊天对象列表
+            localStorage.setItem(data.mine_info.user_name + "chat_object_list", JSON.stringify(data.chat_object_list));// 更新缓存中的聊天对象列表
         }
 
 
@@ -288,7 +287,7 @@ $(document).ready(function () {
         $("#messageContainer").scrollTop(messageContainer.prop("scrollHeight"));
 
         // 检查是否中止了聊天
-        if (localStorage.getItem(data.chat_object_now_name + "_abort")) {
+        if (localStorage.getItem(data.mine_info.user_name + data.chat_object_now_name + "_abort")) {
             // 将发送邀请按钮禁用
             $("#sendInvite").attr("disabled", "disabled");
             $("#sendMessage").attr("disabled", "disabled");
@@ -334,7 +333,7 @@ $(document).ready(function () {
                 // 更新本地存储中的消息记录
                 console.log("更新本地存储中的消息记录:");
                 console.log($("#messageContainer").html());
-                localStorage.setItem("messages" + chat_object_name, $("#messageContainer").html());
+                localStorage.setItem(data.mine_info.user_name + "messages" + chat_object_name, $("#messageContainer").html());
 
 
                 // 更新js数据的聊天对象列表
@@ -350,7 +349,7 @@ $(document).ready(function () {
                 dom_bind_chat_object_click_event();
 
                 // 更新缓存中的聊天对象列表
-                localStorage.setItem("chat_object_list", JSON.stringify(data.chat_object_list));
+                localStorage.setItem(data.mine_info.user_name + "chat_object_list", JSON.stringify(data.chat_object_list));
 
             } else {
                 console.log('发送消息到服务器失败: ' + messageText);
@@ -507,10 +506,10 @@ $(document).ready(function () {
     data.mine_info = get_mine_info();
 
     // 获取数据之，从缓存中获取聊天对象列表 
-    data.chat_object_list = JSON.parse(localStorage.getItem("chat_object_list"));
+    data.chat_object_list = JSON.parse(localStorage.getItem(data.mine_info.user_name + "chat_object_list"));
     if (data.chat_object_list == null || data.chat_object_list == undefined) {
         data.chat_object_list = [];
-        localStorage.setItem("chat_object_list", JSON.stringify(data.chat_object_list));
+        localStorage.setItem(data.mine_info.user_name + "chat_object_list", JSON.stringify(data.chat_object_list));
 
     }
     // 获取数据之，获取聊天对象列表
@@ -519,7 +518,7 @@ $(document).ready(function () {
     // 绑定dom事件之，绑定点击聊天对象事件（传入dom_bind函数）
     dom_bind_chat_object_click_event();
     // 更新缓存中的聊天对象列表
-    localStorage.setItem("chat_object_list", JSON.stringify(data.chat_object_list));
+    localStorage.setItem(data.mine_info.user_name + "chat_object_list", JSON.stringify(data.chat_object_list));
 
     // 不点击第一个聊天对象了, 在data.chat_object_list消除未读消息数和未读消息，并且更新聊天记录
     // if (data.chat_object_list.length != 0) {
@@ -551,7 +550,7 @@ $(document).ready(function () {
                 alert("拒绝聊天成功");
 
                 // 将禁用状态存入缓存
-                localStorage.setItem(data.chat_object_now_name + "_abort", "true");
+                localStorage.setItem(data.mine_info.user_name + data.chat_object_now_name + "_abort", "true");
                 // 将发送邀请按钮禁用
                 $("#sendInvite").attr("disabled", "disabled");
                 $("#sendMessage").attr("disabled", "disabled");
@@ -580,7 +579,7 @@ $(document).ready(function () {
                 console.log(response);
                 alert("接受聊天成功");
                 // 将禁用状态从缓存中删除
-                localStorage.removeItem(data.chat_object_now_name + "_abort");
+                localStorage.removeItem(data.mine_info.user_name + data.chat_object_now_name + "_abort");
                 // 将发送邀请按钮启用
                 $("#sendInvite").removeAttr("disabled");
                 $("#sendMessage").removeAttr("disabled");
@@ -632,7 +631,9 @@ $(document).ready(function () {
             console.log("进入chat.js的更新dom函数")
             dom_build_chat_object_list(data.chat_object_list);
             dom_bind_chat_object_click_event();
-            localStorage.setItem("chat_object_list", JSON.stringify(data.chat_object_list));// 更新缓存中的聊天对象列表
+            //刷新当前聊天对象的聊天记录
+            chat_object_click(data.chat_object_now_name);
+            localStorage.setItem(data.mine_info.user_name + "chat_object_list", JSON.stringify(data.chat_object_list));// 更新缓存中的聊天对象列表
 
 
         } else {
