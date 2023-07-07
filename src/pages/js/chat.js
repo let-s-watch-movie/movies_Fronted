@@ -262,7 +262,7 @@ $(document).ready(function () {
         }
 
         var new_messages = get_chat_object_new_contents_by_name(chat_object_name); // // 获取并加载新消息
-        if (new_messages.length != 0) {
+        if (new_messages != undefined && new_messages != null && new_messages.length != 0) {
             console.log("获取到的新消息不为空");
             for (let i = 0; i < new_messages.length; i++) {
                 chat_append_message(

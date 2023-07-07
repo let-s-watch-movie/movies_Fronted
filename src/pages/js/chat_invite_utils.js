@@ -40,6 +40,8 @@ var getAvatar = function (user_name) {
             const response = JSON.parse(xhr.responseText);
             console.log('获取头像成功');
             console.log(response);
+            // 将头像链接替换，把 http://localhost:8080/ 替换为 server_ip_port
+            response.data.avatar = response.data.avatar.replace("http://localhost:8080/", server_ip_port);
             return response.data.avatar;
         } else {
             console.log('获取头像失败');
@@ -66,6 +68,10 @@ function formatTime(timeString) {
 
     if (diff < 60 * 60) { // 一小时内
         const minutes = Math.floor(diff / 60);
+
+        if (minutes < 2)
+            return '刚刚';
+
         return `${minutes}分钟前`;
     } else if (diff < 60 * 60 * 24) { // 一天内
         const hours = Math.floor(diff / (60 * 60));
