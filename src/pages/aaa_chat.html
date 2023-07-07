@@ -5,13 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Material Design for Bootstrap</title>
-  <!-- MDB icon -->
-  <link rel="icon" href="../../static/mdb/img/mdb-favicon.ico" type="image/x-icon" />
+  <title>一起看-聊天页</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
   <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap" />
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap" /> -->
   <!-- MDB -->
   <link rel="stylesheet" href="../../static/mdb/css/bootstrap-chat.min.css" />
 </head>
@@ -19,6 +17,49 @@
 <body>
   <!-- Start your project here-->
   <link rel="stylesheet" href="css/aaa_chat.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Left links -->
+      <div>
+        <!-- Navbar brand -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-wrap">
+          <a class="nav-link d-flex align-items-center" href="./aaa_chat.html">
+            <i class="far fa-message me-2"></i>
+            <span>消息</span>
+          </a>
+        </ul>
+      </div>
+      <!-- Left links -->
+
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+        <a class="nav-link me-3" href="#">
+          <span id="bartext">一起看电影 &ensp;首页</span>
+        </a>
+        <div class="dropdown">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="../../static/img/R.jpg" class="rounded-circle avatar" height="25" alt="avators" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+            <li>
+              <a class="dropdown-item" href="./me.html">个人主页</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="login.html">退出登录</a>
+            </li>
+          </ul>
+        </div>
+        <!-- </li> -->
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
 
   <!--全页面 最底层 -->
   <section style="/*background-color: #c4e9f9;*/ border: red 1px solid">
@@ -67,7 +108,7 @@
                         ">
                       <!-- nav nav-tabs class text-center不能要 -->
                       <ul class="nav nav-tabs flex-column list-unstyled mb-0" id="chat_object_list">
-                        <li class="chat-object p-2 border-bottom" style="/*border: green 1px solid*/">
+                        <li class="chat-object p-2 border-bottom">
                           <!--class nav-link 和 nav nav-tabs配合，搞得难看 -->
                           <a class="nav-link d-flex justify-content-between active" id="用户A" data-mdb-toggle="tab"
                             href="#v-tabs-home">
@@ -96,7 +137,7 @@
                 </div>
 
                 <!-- 以下是页面右边 -->
-                <div class="col-md-6 col-lg-7 col-xl-8">
+                <div class="col-md-6 col-lg-7 col-xl-8" id="page_right" style="display: none;">
                   <!-- Tab content -->
 
                   <!-- 以下是header -->
@@ -255,6 +296,7 @@
   <script src="js/chat_invite_utils.js"></script>
 
   <script src="js/chat.js"></script>
+  <script src="../pages/js/function.js"></script>
 </body>
 
 </html>

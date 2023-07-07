@@ -1,231 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
-    <!-- MDB icon -->
-    <link
-      rel="icon"
-      href="../../static/mdb/img/mdb-favicon.ico"
-      type="image/x-icon"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
-    />
-    <!-- Google Fonts Roboto -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap"
-    />
-    <!-- MDB -->
-    <link rel="stylesheet" href="../../static/mdb/css/bootstrap-chat.min.css" />
-  </head>
 
-  <body>
-    <!-- Start your project here-->
-    <link rel="stylesheet" href="css/aaa_invitation.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>一起看-邀约页</title>
+  <!-- Font Awesome
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" /> -->
+  <!-- Google Fonts Roboto -->
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap" /> -->
+  <!-- MDB -->
+  <link rel="stylesheet" href="../../static/mdb/css/bootstrap-chat.min.css" />
+</head>
 
-    <!--全页面 最底层 -->
-    <section style="/*background-color: #c4e9f9;*/ border: red 1px solid">
-      <!-- 页面中央区 container  -->
-      <div
-        class="container py-5"
-        style="background-color: #c4e9f9; border: rgb(0, 255, 145) 1px solid"
-      >
-        <div class="row">
-          <div class="col-md-12">
-            <!-- 中心聊天container -->
-            <div
-              class="card"
-              id="chat3"
-              style="border-radius: 15px; border: red 1px solid"
-            >
-              <!-- 以下这个组件row处在的容器body -->
-              <div class="card-body">
-                <!-- 以下这个组件全部做为一个row -->
-                <div class="row">
-                  <!-- 以下是页面左边 -->
-                  <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
-                    <div class="p-3">
-                      <!-- 内边距为3的类 -->
+<body>
+  <!-- Start your project here-->
+  <link rel="stylesheet" href="css/aaa_invitation.css" />
+  <link rel="stylesheet" href="css/global.css" />
 
-                      <!-- 内容 navs -->
-                      <ul
-                        class="nav nav-pills justify-content-between mb-3"
-                        id="ex-with-icons"
-                        role="tablist"
-                      >
-                        <li class="nav-item">
-                          <a class="nav-link" href="./aaa_chat.html">聊天</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link active" href="#">邀约</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" href="./aaa_new_chat.html"
-                            >新聊天</a
-                          >
-                        </li>
-                      </ul>
-                      <!-- 内容 navs -->
-                      <!-- 聊天列表 -->
-                      <!-- Tab navs -->
-                      <div
-                        style="
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Left links -->
+      <div>
+        <!-- Navbar brand -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-wrap">
+          <a class="nav-link d-flex align-items-center" href="./aaa_chat.html">
+            <i class="far fa-message me-2"></i>
+            <span>消息</span>
+          </a>
+        </ul>
+      </div>
+      <!-- Left links -->
+
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+        <a class="nav-link me-3" href="#">
+          <span id="bartext">一起看电影 &ensp;首页</span>
+        </a>
+        <div class="dropdown">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="../../static/img/R.jpg" class="rounded-circle avatar" height="25" alt="avators" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+            <li>
+              <a class="dropdown-item" href="./me.html">个人主页</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="login.html">退出登录</a>
+            </li>
+          </ul>
+        </div>
+        <!-- </li> -->
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+  <!--全页面 最底层 -->
+  <section style="/*background-color: #c4e9f9;*/ border: red 1px solid">
+    <!-- 页面中央区 container  -->
+    <div class="container py-5" style="background-color: #c4e9f9; border: rgb(0, 255, 145) 1px solid">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- 中心聊天container -->
+          <div class="card" id="chat3" style="border-radius: 15px; border: red 1px solid">
+            <!-- 以下这个组件row处在的容器body -->
+            <div class="card-body">
+              <!-- 以下这个组件全部做为一个row -->
+              <div class="row">
+                <!-- 以下是页面左边 -->
+                <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                  <div class="p-3">
+                    <!-- 内边距为3的类 -->
+
+                    <!-- 内容 navs -->
+                    <ul class="nav nav-pills justify-content-between mb-3" id="ex-with-icons" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link" href="./aaa_chat.html">聊天</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a class="nav-link active" href="#">邀约</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="./aaa_new_chat.html">新聊天</a>
+                      </li>
+                    </ul>
+                    <!-- 内容 navs -->
+                    <!-- 聊天列表 -->
+                    <!-- Tab navs -->
+                    <div style="
                           position: relative;
                           height: 800px;
                           overflow-y: scroll; /* border: blue 1px solid; */
-                        "
-                      >
-                        <!-- </ul> -->
-                        <div
-                          class="nav flex-column nav-pills text-center"
-                          id="v-pills-tab"
-                        >
-                          <a
-                            class="nav-link active"
-                            id="all-tab"
-                            data-mdb-toggle="pill"
-                            href="#v-pills-tab"
-                            >全部记录</a
-                          >
-                          <a
-                            class="nav-link"
-                            id="agreed-both-tab"
-                            data-mdb-toggle="pill"
-                            href="#v-pills-tab"
-                            >我正在相约的</a
-                          >
-                          <a
-                            class="nav-link"
-                            id="my-invite-unhandled-tab"
-                            data-mdb-toggle="pill"
-                            href="#v-pills-tab"
-                            >我正在邀请的</a
-                          >
-                          <a
-                            class="nav-link"
-                            id="my-receive-unhandled-tab"
-                            data-mdb-toggle="pill"
-                            href="#v-pills-tab"
-                            >我正被邀约的</a
-                          >
-                        </div>
+                        ">
+                      <!-- </ul> -->
+                      <div class="nav flex-column nav-pills text-center" id="v-pills-tab">
+                        <a class="nav-link active" id="all-tab" data-mdb-toggle="pill" href="#v-pills-tab">全部记录</a>
+                        <a class="nav-link" id="agreed-both-tab" data-mdb-toggle="pill" href="#v-pills-tab">我正在相约的</a>
+                        <a class="nav-link" id="my-invite-unhandled-tab" data-mdb-toggle="pill"
+                          href="#v-pills-tab">我正在邀请的</a>
+                        <a class="nav-link" id="my-receive-unhandled-tab" data-mdb-toggle="pill"
+                          href="#v-pills-tab">我正被邀约的</a>
                       </div>
-                      <!-- Tab navs -->
                     </div>
+                    <!-- Tab navs -->
                   </div>
+                </div>
 
-                  <!-- 以下是页面右边 -->
-                  <div class="col-md-6 col-lg-7 col-xl-8">
-                    <!-- 表格 -->
-                    <table class="table align-middle mb-0 bg-white">
-                      <thead class="bg-light">
-                        <tr>
-                          <th>电影名称</th>
-                          <th>对方信息</th>
-                          <th>状态</th>
-                          <th>修改意见</th>
-                        </tr>
-                      </thead>
-                      <tbody id="invite_content_container">
-                        <tr style="display: none/*作为必要的*/">
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img
-                                src="https://p0.pipi.cn/mmdb/fb738671be10fab860281ec0afaeb3403530a.jpg?imageView2/1/w/464/h/644"
-                                alt=""
-                                style="width: 45px; height: 45px"
-                                class="rounded-circle"
-                              />
-                              <div class="ms-3">
-                                <p class="movie_id fw-bold mb-1">电影1</p>
-                                <p class="invite_time text-muted mb-0">
-                                  2023-07-04 08:00
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="fw-normal mb-1">对方信息/p>
-                              <div class="d-flex align-items-center">
+                <!-- 以下是页面右边 -->
+                <div class="col-md-6 col-lg-7 col-xl-8">
+                  <!-- 表格 -->
+                  <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                      <tr>
+                        <th>电影名称</th>
+                        <th>对方信息</th>
+                        <th>状态</th>
+                        <th>修改意见</th>
+                      </tr>
+                    </thead>
+                    <tbody id="invite_content_container">
+                      <tr style="display: none/*作为必要的*/">
+                        <td>
+                          <div class="d-flex align-items-center">
                             <img
-                              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                              style="width: 45px; height: 45px"
-                              class="rounded-circle"
-                            />
+                              src="https://p0.pipi.cn/mmdb/fb738671be10fab860281ec0afaeb3403530a.jpg?imageView2/1/w/464/h/644"
+                              alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                            <div class="ms-3">
+                              <p class="movie_id fw-bold mb-1">电影1</p>
+                              <p class="invite_time text-muted mb-0">
+                                2023-07-04 08:00
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">对方信息/p>
+                          <div class="d-flex align-items-center">
+                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" style="width: 45px; height: 45px"
+                              class="rounded-circle" />
                             <p class="text-muted mb-0">用户名1</p>
                           </div>
-                          </td>
-                          <td>
-                            <span
-                              class="badge badge-success rounded-pill d-inline"
-                              >已同意</span
-                            >
-                          </td>
+                        </td>
+                        <td>
+                          <span class="badge badge-success rounded-pill d-inline">已同意</span>
+                        </td>
 
-                          <td>
-                            <button
-                              type="button"
-                              class="btn btn-link btn-sm btn-rounded"
-                              data-mdb-toggle="modal"
-                              data-mdb-target="#changeInvitationStatusModal"
-                            >
-                              修改
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <!-- 表格 -->
-                  </div>
+                        <td>
+                          <button type="button" class="btn btn-link btn-sm btn-rounded" data-mdb-toggle="modal"
+                            data-mdb-target="#changeInvitationStatusModal">
+                            修改
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- 表格 -->
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
 
-    <div class="modal fade" id="changeInvitationStatusModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header mb-5" style="border-bottom: white">
-            <h5 class="modal-title ms-5" id="inviteModalLabel">
-              请选择邀约状态
-            </h5>
-            <button type="button" class="btn-close" data-mdb-dismiss="modal"></button>
-          </div>
-          <!-- <div class="modal-body">
+  <div class="modal fade" id="changeInvitationStatusModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header mb-5" style="border-bottom: white">
+          <h5 class="modal-title ms-5" id="inviteModalLabel">
+            请选择邀约状态
+          </h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal"></button>
+        </div>
+        <!-- <div class="modal-body">
                               </div> -->
-          <div class="d-flex justify-content-around mb-5">
-            <button id="rejectInvitation" type="button" class="btn btn-primary" data-mdb-dismiss="modal">
-              拒绝
-              <!-- TODO -->
-            </button>
-            <button id="acceptInvitation" type="button" class="btn btn-success" data-mdb-dismiss="modal">
-              <!-- TODO -->
-              同意
-            </button>
-          </div>
+        <div class="d-flex justify-content-around mb-5">
+          <button id="rejectInvitation" type="button" class="btn btn-primary" data-mdb-dismiss="modal">
+            拒绝
+            <!-- TODO -->
+          </button>
+          <button id="acceptInvitation" type="button" class="btn btn-success" data-mdb-dismiss="modal">
+            <!-- TODO -->
+            同意
+          </button>
         </div>
       </div>
     </div>
-    <!-- End your project here-->
+  </div>
+  <!-- End your project here-->
 
-    <!-- MDB -->
-    <script src="../../static/mdb/js/mdb.min.js"></script>
-    <!-- Custom scripts -->
-    <script src="../../static/mdb/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-    <script src="js/chat_invite_utils.js"></script>
-    <script src="js/chat_invitation.js"></script>
-  </body>
+  <!-- MDB -->
+  <script src="../../static/mdb/js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="../../static/mdb/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+  <script src="js/chat_invite_utils.js"></script>
+  <script src="js/chat_invitation.js"></script>
+  <script src="../pages/js/function.js"></script>
+</body>
+
 </html>

@@ -332,37 +332,38 @@ $(document).ready(function () {
      * 定时询问服务器是否有新消息
      */
     // // 创建一个新的Web Worker
-    // var worker = new Worker("./js/aaa_chat_worker.js");
+    var worker = new Worker("./js/aaa_chat_worker.js");
 
-    // // 在定时器中向Web Worker发送消息
-    // setInterval(function () {
-    //     console.log("向Web Worker发送消息,要求更新聊天对象列表");
-    //     var req = {
-    //         message: "start",
-    //         mine_name: data.mine_info.user_name
-    //     }
-    //     worker.postMessage(req);
-    // }, 5000); // 5秒询问一次
+    // 在定时器中向Web Worker发送消息
+    setInterval(function () {
+        console.log("向Web Worker发送消息,要求更新聊天对象列表");
+        var req = {
+            message: "start",
+            mine_name: data.mine_info.user_name
+        }
+        worker.postMessage(req);
+    }, 5000); // 5秒询问一次
 
-    // // 监听Web Worker的消息
-    // worker.onmessage = function (event) {
-    //     console.log("回到chat.js")
-    //     console.log("chat.js收到:");
-    //     console.log(event);
-    //     // TODO:这里有啥
-    //     if (event.data.message == "获取一次新的聊天列表成功") {
-    //         console.log("chat.js最后获取聊天对象列表成功")
-    //         if (data.chat_object_list == null || data.chat_object_list == undefined) {
-    //             data.chat_object_list = []
-    //         }
+    // 监听Web Worker的消息
+    worker.onmessage = function (event) {
+        console.log("回到chat.js")
+        console.log("chat.js收到:");
+        console.log(event);
+        // TODO:这里有啥
+        if (event.data.message == "获取一次新的聊天列表成功") {
+            console.log("chat.js最后获取聊天对象列表成功")
+            if (data.chat_object_list == null || data.chat_object_list == undefined) {
+                data.chat_object_list = []
+            }
 
-    //         console.log("进入chat.js的更新dom函数")
-    //         update_chat_object_list(event.data.data);
-    //         dom_build_chat_object_list(data.chat_object_list);
+            console.log("进入chat.js的更新dom函数")
+            update_chat_object_list(event.data.data);
+            dom_build_chat_object_list(data.chat_object_list);
+            dom_bind_chat_object_click_event();
 
-    //     } else {
-    //         console.log("chat.js最后获取聊天对象列表失败")
-    //     }
+        } else {
+            console.log("chat.js最后获取聊天对象列表失败")
+        }
 
-    // };
+    };
 });

@@ -1,5 +1,5 @@
-// var server_ip_port = "http://192.168.159.207:8080/"
-var server_ip_port = "http://localhost:8080/"
+var server_ip_port = "http://192.168.159.207:8080/"
+// var server_ip_port = "http://localhost:8080/"
 
 
 // 导入依赖项
@@ -53,11 +53,11 @@ function data_get_chat_object_list(mine_name) {
     xhr.send(JSON.stringify({ receiverAccount: mine_name }));
     if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
-        console.log('xhr成功获取聊天对象列表');
-        console.log(response.data);
+        // console.log('xhr成功获取聊天对象列表');
+        // console.log(response.data);
         const object_list = justify_backend_chat_object_list_data(response);
-        console.log("xhr返回:")
-        console.log(object_list);
+        // console.log("xhr返回:")
+        // console.log(object_list);
         if (object_list == undefined) {
             console.log('xhr获取到的聊天对象列表为undefined');
             return [];
@@ -72,23 +72,23 @@ function data_get_chat_object_list(mine_name) {
 }
 
 
-console.log("进入chat_worker.js")
+// console.log("进入chat_worker.js")
 
 // 监听消息
 self.addEventListener('message', function (event) {
     // 接收消息
     var message = event.data.message;
     var mine_name = event.data.mine_name;
-    console.log("aaa_chat_worker.js: 收到消息: ");
-    console.log(event);
+    // console.log("aaa_chat_worker.js: 收到消息: ");
+    // console.log(event);
 
     // 如果消息是"start"，则执行data_get_chat_object_list函数
     if (message === 'start') {
         console.log("chat_worker.js: 收到start消息，开始执行data_get_chat_object_list函数");
 
         var result = data_get_chat_object_list(mine_name);
-        console.log("aaa_chat_worker.js: data_get_chat_object_list函数执行完毕，返回结果为：");
-        console.log(result);
+        // console.log("aaa_chat_worker.js: data_get_chat_object_list函数执行完毕，返回结果为：");
+        // console.log(result);
         if (result == undefined) {
             // 发送消息
             response = {
@@ -103,8 +103,8 @@ self.addEventListener('message', function (event) {
             }
         }
 
-        console.log("chat_worker.js:退出chat_worker.js, 返回消息为：");
-        console.log(response);
+        // console.log("chat_worker.js:退出chat_worker.js, 返回消息为：");
+        // console.log(response);
         self.postMessage(response);
     }
 });

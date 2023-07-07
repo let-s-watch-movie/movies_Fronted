@@ -5,20 +5,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Material Design for Bootstrap</title>
-  <!-- MDB icon -->
-  <link rel="icon" href="../../static/mdb/img/mdb-favicon.ico" type="image/x-icon" />
+  <title>一起看-新聊天</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;800;500;700;900&display=swap" />
   <!-- MDB -->
   <link rel="stylesheet" href="../../static/mdb/css/bootstrap-chat.min.css" />
+  <link rel="stylesheet" href="">
 </head>
 
 <body>
   <!-- Start your project here-->
   <link rel="stylesheet" href="css/aaa_invitation.css" />
+  <link rel="stylesheet" href="css/global.css" />
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Left links -->
+      <div>
+        <!-- Navbar brand -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-wrap">
+          <a class="nav-link d-flex align-items-center" href="./aaa_chat.html">
+            <i class="far fa-message me-2"></i>
+            <span>消息</span>
+          </a>
+        </ul>
+      </div>
+      <!-- Left links -->
+
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+        <a class="nav-link me-3" href="#">
+          <span id="bartext">一起看电影 &ensp;首页</span>
+        </a>
+        <div class="dropdown">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
+            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="../../static/img/R.jpg" class="rounded-circle avatar" height="25" alt="avators" loading="lazy" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+            <li>
+              <a class="dropdown-item" href="./me.html">个人主页</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="login.html">退出登录</a>
+            </li>
+          </ul>
+        </div>
+        <!-- </li> -->
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
 
   <!--全页面 最底层 -->
   <section style="/*background-color: #c4e9f9;*/ border: red 1px solid">
@@ -60,7 +103,7 @@
                         ">
                       <!-- nav nav-tabs class text-center不能要 -->
                       <ul class="nav nav-tabs flex-column list-unstyled mb-0" id="handle_object_list">
-                        <li class="p-2 border-bottom" style="/*border: green 1px solid*/">
+                        <li class="p-2 border-bottom">
                           <!--class nav-link 和 nav nav-tabs配合，搞得难看 -->
                           <a class="nav-link d-flex justify-content-between active" id="v-tabs-home-tab"
                             data-mdb-toggle="tab" href="#v-tabs-home">
@@ -82,7 +125,7 @@
                           </a>
                         </li>
 
-                        <li class="p-2 border-bottom" style="/*border: green 1px solid*/">
+                        <li class="p-2 border-bottom">
                           <a class="nav-link d-flex justify-content-between" id="v-tabs-profile-tab"
                             data-mdb-toggle="tab" href="#v-tabs-home">
                             <!--注意 1. a的class 默认没有active 2. a的id要改，3. href要改，
@@ -106,7 +149,7 @@
                           </a>
                         </li>
 
-                        <li class="p-2 border-bottom" style="/*border: green 1px solid*/">
+                        <li class="p-2 border-bottom">
                           <a class="nav-link d-flex justify-content-between" id="v-tabs-profile-tab"
                             data-mdb-toggle="tab" href="#v-tabs-home">
                             <div class="d-flex flex-row">
@@ -161,10 +204,10 @@
                         style="width: 45px; height: 100%" />
                       <div>
                         <p id="request_content" class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7">
-                          
+
                         </p>
                         <p id="request_time" class="small ms-3 mb-3 rounded-3 text-muted float-end">
-                          
+
                         </p>
                       </div>
                     </div>
@@ -206,6 +249,7 @@
   <script src="js/chat_invite_utils.js"></script>
 
   <script src="js/chat_new_chat.js"></script>
+  <script src="../pages/js/function.js"></script>
 </body>
 
 </html>

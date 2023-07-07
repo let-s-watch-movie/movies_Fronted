@@ -162,7 +162,7 @@ $(document).ready(function () {
 
   var get_my_invite_unhandled = function () {
 
-    data.invite_my_invite_unhandled_list =  data.invite_all_list.filter(function (item) {
+    data.invite_my_invite_unhandled_list = data.invite_all_list.filter(function (item) {
       return (
         // 筛选，inviter_account == mine_info.user_name && status == 0 // 所有未处理的，划到我的邀请
         item.inviterAccount == data.mine_info.user_name && item.status == 0
@@ -171,7 +171,7 @@ $(document).ready(function () {
   };
 
   var get_my_receive_unhandled = function () {
-    data.invite_my_receive_unhandled_list =  data.invite_all_list.filter(function (item) {
+    data.invite_my_receive_unhandled_list = data.invite_all_list.filter(function (item) {
       return (
         // 筛选, receiver_account == mine_info.user_name && status == 0 // 所有未处理的，划到我的新被邀约请求
         item.receiverAccount == data.mine_info.user_name && item.status == 0
@@ -180,7 +180,7 @@ $(document).ready(function () {
   };
 
   var get_agreed_both = function () {
-   data.invite_agreed_both_list =  data.invite_all_list.filter(function (item) {
+    data.invite_agreed_both_list = data.invite_all_list.filter(function (item) {
       // 筛选, status == 1 // 所有同意的，就是双方都同意的 划到我的相约
       return item.status == 1;
     });

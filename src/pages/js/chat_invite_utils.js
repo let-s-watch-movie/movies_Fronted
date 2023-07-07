@@ -1,5 +1,5 @@
 var server_ip_port = "http://192.168.159.207:8080/"
-
+// var server_ip_port = "http://localhost:8080/"
 
 function getTimeNow() {
     var now = new Date();
