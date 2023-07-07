@@ -25,7 +25,10 @@
         <div>
           <!-- Navbar brand -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-wrap">
-            <a class="nav-link d-flex align-items-center" href="./aaa_chat.html">
+            <a
+              class="nav-link d-flex align-items-center"
+              href="./aaa_chat.html"
+            >
               <i class="far fa-message me-2"></i>
               <span>消息</span>
             </a>
@@ -89,8 +92,7 @@
                 <div class="col-md-2">
                   <img
                   src="https://img0.baidu.com/it/u=2544638661,1263898139&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=498""
-                  alt="头像"
-                  class="avatar">
+                  alt="头像" class="avatar">
                 </div>
                 <div class="col-md-8 account">用户名</div>
               </div>
@@ -125,23 +127,57 @@
           <div class="row clearfix button_wrapper">
             <div class="col-md-4 offset-md-7">
               <!-- 发送聊天请求按钮 -->
-              <button class = "btn" id="chat_resquest" type="button" data-mdb-toggle="modal" data-mdb-target="#popchat_resquest">点击向ta发送聊天请求</button>
+              <button
+                class="btn btn-primary"
+                id="chat_resquest"
+                type="button"
+                data-mdb-toggle="modal"
+                data-mdb-target="#popchat_resquest"
+              >
+                点击向ta发送聊天请求
+              </button>
               <!-- Modal -->
-              <div class="modal fade" id="popchat_resquest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="popchat_resquest"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">请求发送</h5>
-                      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        请求发送
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-mdb-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
                     <div class="modal-body">
                       <div>
-                        <input type="text" id="chat_content" multiple placeholder="来打个招呼吧">
+                        <input
+                          type="text"
+                          id="chat_content"
+                          multiple
+                          placeholder="来打个招呼吧"
+                        />
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary cancel" data-mdb-dismiss="modal">取消</button>
-                      <button type="button" class="btn btn-primary submit">确认发送</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary cancel"
+                        data-mdb-dismiss="modal"
+                      >
+                        取消
+                      </button>
+                      <button type="button" class="btn btn-primary submit">
+                        确认发送
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -149,7 +185,7 @@
 
               <!-- 下拉按钮 -->
               <button
-                class="btn btn-primary"
+                class="btn btn-light"
                 type="button"
                 data-mdb-toggle="collapse"
                 data-mdb-target="#movie_list_wrapper"
@@ -164,7 +200,7 @@
           <!-- 用户加入的电影列表 -->
           <div
             class="row clearfix movie_list_wrapper collapse align-items-center justify-content-center"
-            id = "movie_list_wrapper"
+            id="movie_list_wrapper"
           >
             <div class="col-md-10 movie_cards">
               <!-- <div class="row">
@@ -257,15 +293,9 @@
               </div> -->
             </div>
           </div>
-
         </div>
       </div>
     </div>
-
-
-
-
-
 
     <!-- MDB -->
     <script

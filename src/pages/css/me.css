@@ -3,10 +3,11 @@
   margin-left: 20px;
   font-size: 20px;
 }
-/* body{
-  background-image: url("../../../static/img/background.png");
-} */
 
+body{
+  background-image: linear-gradient(white, rgb(10, 82, 227));
+  min-height: 800px;
+}
 .navbar .avatar{
   object-fit: cover;
   width:45px;

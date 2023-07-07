@@ -1,3 +1,7 @@
+body{
+  background-image: linear-gradient(white, rgb(10, 82, 227));
+  min-height: 800px;
+}
 .goback {
   margin-top: 70px;
   margin-left: 20px;
