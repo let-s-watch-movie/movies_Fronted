@@ -24,8 +24,7 @@ var justify_backend_chat_object_list_data = function (serverResponse) {
 
             transformedData.push({
                 user_name: chat.sendingAccount,
-                user_avatar:
-                    "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp",
+                user_avatar: getAvatar(chat.sendingAccount),
                 latest_message: chat.content.length > 10 ? chat.content.slice(0, 10) + "..." : chat.content,
                 latest_message_time: chat.timeStamp.replace("T", " "),
                 is_online: true,
