@@ -1,6 +1,6 @@
 body{
   background-image: linear-gradient(white, rgb(10, 82, 227));
-  min-height: 800px;
+  min-height: 1000px;
 }
 .goback {
   margin-top: 70px;
@@ -31,6 +31,7 @@ body{
 
 .img-wraper img {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+  height: 550px;
 }
 
 .mintro .title {
@@ -86,4 +87,7 @@ body{
   margin: 50px auto;
   width: 500px;
   text-align: center;
+}
+#movie_title{
+  color: white;
 }

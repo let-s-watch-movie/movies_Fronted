@@ -187,7 +187,7 @@ $(document).ready(function () {
         user_info = {
           sex: redata.sex ? redata.sex : "还未填写",
           age: redata.age,
-          register_time: redata.register_time,
+          register_time: redata.registerTime,
           description: redata.description ? redata.description : "还未填写",
         };
         show_user_info(user_info);
@@ -226,60 +226,7 @@ $(document).ready(function () {
     reader.readAsDataURL(file);
   });
 
-  //6.2信息的修改提交
-  // $("#Form").submit(function (e) {
-  //   e.preventDefault(); // 阻止表单默认提交行为
-
-  //   //var form = $(this);
-  //   const formData = new FormData();
-
-  //   //头像
-  //   var avatarFile = $("#input_avatar")[0].files[0];
-  //   formData.append("avatar", avatarFile);
-
-  //   let new_sex = $("#edit_info #gender-select").val();
-  //   let new_age = $("#input_age").val();
-  //   let new_description = $("#input_intro").val();
-
-  //   formData.append("account", account);
-  //   formData.set("sex", new_sex);
-  //   formData.set("age", new_age);
-  //   formData.set("description", new_description);
-
-    
-
-  //   // form.forEach(function (value, key) {
-  //   //   console.log(key + ": " + value);
-  //   // });
-  //   $.ajax({
-  //     url: "http://192.168.159.207:8080/user/updateUserInfo",
-  //     method: "get",
-  //     processData: false,
-  //     contentType: "multipart/form-data",
-  //     data: formData,
-  //     crossDomain: true,
-  //     success: function (res) {
-  //       console.log("后端返回: ");
-  //       console.log(res);
-  //       if (res.status_code == "200") {
-  //         sessionStorage.setItem("avatar", new_avatar);
-  //         //面板个人信息的更新
-  //         initialize_users(); //更新头像和昵称
-  //         user_info.sex = new_sex;
-  //         user_info.age = new_age;
-  //         user_info.description = new_description;
-  //         show_user_info(user_info);
-  //         alert("修改成功!");
-  //       } else {
-  //         alert("修改失败!");
-  //       }
-  //     },
-  //     error: function (err) {
-  //       console.log("上传信息失败:");
-  //       console.log(err);
-  //     },
-  //   });
-  // });
+ 
 
   $("#Form").submit(function (e) {
     e.preventDefault(); // 阻止表单默认提交行为

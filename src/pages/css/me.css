@@ -6,7 +6,7 @@
 
 body{
   background-image: linear-gradient(white, rgb(10, 82, 227));
-  min-height: 800px;
+  min-height: 1000px;
 }
 .navbar .avatar{
   object-fit: cover;

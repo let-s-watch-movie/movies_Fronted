@@ -197,10 +197,10 @@ $(document).ready(function () {
           avatar_src = "../../../static/img/R.jpg";
         }
         user_info = {
-          sex: res.sex ? res.sex : "还未填写",
-          age: res.age,
-          register_time: res.register_time,
-          description: res.description ? res.description : "还未填写",
+          sex: res.data.sex ? res.data.sex : "还未填写",
+          age: res.data.age,
+          register_time: res.data.registerTime,
+          description: res.data.description ? res.data.description : "还未填写",
           avatar: avatar_src,
         };
         show_user_info(user_info);

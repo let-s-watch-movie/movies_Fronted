@@ -27,7 +27,7 @@ body {
   font-size: 38px;
   font-weight: bold;
   text-align: center;
-  line-height: 200px;
+  line-height: 150px;
 }
 .input-item {
   display: block;
@@ -66,4 +66,9 @@ a {
 
 .msg,.btn{
   cursor: pointer;
+}
+.intro{
+  color:gray;
+  margin: 0px auto 20px;
+  width:150px;
 }
